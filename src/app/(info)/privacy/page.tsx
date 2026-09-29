@@ -28,11 +28,13 @@ export default function PrivacyPage() {
       <section className="glass-deep rounded-2xl p-6 space-y-4">
         <h2 className="text-xl font-semibold text-brand-text">2. Verantwortliche Stelle</h2>
         <div className="text-brand-muted text-sm space-y-1">
-          <p>shiftbloom studio</p>
           <p>Fabian Zimber</p>
-          <p>Hamburg, Deutschland</p>
+          <p>shiftbloom studio</p>
+          <p>Up de Worth 6a</p>
+          <p>22927 Gro&szlig;hansdorf</p>
+          <p>Deutschland</p>
           <p>E-Mail: fabian@shiftbloom.studio</p>
-          <p>Telefon: +49 (0) 163 8552 708</p>
+          <p>Telefon: +49 163 8552 708</p>
         </div>
       </section>
 
@@ -114,17 +116,17 @@ export default function PrivacyPage() {
         <h2 className="text-xl font-semibold text-brand-text">5. Aufsichtsbeh&ouml;rde</h2>
         <div className="text-brand-muted text-sm space-y-1">
           <p className="font-medium text-brand-text">
-            Der Hamburgische Beauftragte f&uuml;r Datenschutz und Informationsfreiheit
+            Unabh&auml;ngiges Landeszentrum f&uuml;r Datenschutz Schleswig-Holstein (ULD)
           </p>
-          <p>Ludwig-Erhard-Stra&szlig;e 22, 7. OG, 20459 Hamburg</p>
+          <p>Postfach 71 16, 24171 Kiel</p>
           <p>
             <a
-              href="https://datenschutz-hamburg.de"
+              href="https://www.datenschutzzentrum.de"
               target="_blank"
               rel="noopener noreferrer"
               className="text-brand-primary hover:underline"
             >
-              datenschutz-hamburg.de
+              datenschutzzentrum.de
             </a>
           </p>
         </div>
@@ -133,7 +135,7 @@ export default function PrivacyPage() {
       <section className="glass-deep rounded-2xl p-6 space-y-4">
         <h2 className="text-xl font-semibold text-brand-text">6. &Auml;nderungen</h2>
         <p className="text-brand-muted text-sm">
-          Wir behalten uns vor, diese Datenschutzerkl&auml;rung anzupassen. Stand: M&auml;rz 2026
+          Wir behalten uns vor, diese Datenschutzerkl&auml;rung anzupassen. Stand: September 2026
         </p>
       </section>
     </article>
