@@ -19,7 +19,7 @@
     "@react-three/fiber": "^9.0.0",
     "dexie": "^4.0.11",
     "motion": "^12.0.0",
-    "next": "16.2.1",
+    "next": "16.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^2.15.0",
@@ -40,6 +40,6 @@
     "postcss": "^8.5.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",
-    "vitest": "^3.0.0"
+    "vitest": "^4.1.11"
   }
 }
