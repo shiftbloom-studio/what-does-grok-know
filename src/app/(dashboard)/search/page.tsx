@@ -1,10 +1,10 @@
 "use client";
 
+import { useCallback, useEffect, useRef, useState } from "react";
 import { SearchResults } from "@/components/search/search-results";
 import { SearchInput } from "@/components/ui/search-input";
 import { getAllConversations, getAllMessages } from "@/lib/storage/db-queries";
 import type { ParsedConversation, ParsedMessage } from "@/lib/types/grok-data";
-import { useCallback, useEffect, useRef, useState } from "react";
 
 interface SearchResult {
   conversation: ParsedConversation;
@@ -88,8 +88,10 @@ export default function SearchPage() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-2xl font-bold text-brand-text mb-1">Search</h1>
-        <p className="text-sm text-brand-muted">Find anything across all your conversations</p>
+        <h1 className="mb-1 text-3xl font-semibold text-brand-text">Search</h1>
+        <p className="text-sm text-brand-muted">
+          Full-text search over every message, run in this tab.
+        </p>
       </div>
 
       <SearchInput

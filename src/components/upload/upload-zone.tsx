@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils/format-utils";
 import { useCallback, useRef, useState } from "react";
+import { cn } from "@/lib/utils/format-utils";
 
 interface UploadZoneProps {
   onFileLoaded: (text: string) => void;
@@ -87,16 +87,16 @@ export function UploadZone({ onFileLoaded, className }: UploadZoneProps) {
       role="button"
       tabIndex={0}
       className={cn(
-        "relative flex flex-col items-center justify-center gap-4 p-12 rounded-2xl border-2 border-dashed cursor-pointer transition-all duration-300",
+        "relative flex flex-col items-center justify-center gap-4 p-12 rounded-2xl border-2 border-dashed cursor-pointer transition-colors duration-200",
         dragging
-          ? "border-brand-primary bg-brand-primary/5 scale-[1.02]"
-          : "border-brand-border bg-white/50 hover:border-brand-primary/50 hover:bg-white/70",
+          ? "border-brand-primary bg-brand-secondary"
+          : "border-brand-border bg-brand-panel hover:border-brand-primary",
         className,
       )}
     >
-      <div className="w-16 h-16 rounded-2xl bg-brand-primary/10 flex items-center justify-center">
+      <div className="w-14 h-14 rounded-full bg-white border border-brand-border flex items-center justify-center">
         <svg
-          className="w-8 h-8 text-brand-primary"
+          className="w-8 h-8 text-brand-root"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -112,11 +112,13 @@ export function UploadZone({ onFileLoaded, className }: UploadZoneProps) {
       </div>
 
       <div className="text-center">
-        <p className="text-lg font-semibold text-brand-text">Drop your grok-chats.json here</p>
-        <p className="text-sm text-brand-muted mt-1">or click to browse (max 200 MB)</p>
+        <p className="text-lg font-medium text-brand-text">Drop your Grok export here</p>
+        <p className="text-sm text-brand-muted mt-1">
+          The .json file, up to 200 MB. Or click to pick it.
+        </p>
       </div>
 
-      {error && <p className="text-sm text-brand-primary font-medium">{error}</p>}
+      {error && <p className="text-sm text-brand-root font-medium">{error}</p>}
 
       <input ref={inputRef} type="file" accept=".json" onChange={handleChange} className="hidden" />
     </div>

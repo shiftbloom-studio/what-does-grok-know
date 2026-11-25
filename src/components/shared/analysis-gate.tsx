@@ -10,7 +10,7 @@ export function AnalysisGate({ children }: { children: React.ReactNode }) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center max-w-md">
-          <p className="text-brand-primary font-medium mb-2">Analysis Error</p>
+          <p className="text-brand-root font-medium mb-2">Analysis error</p>
           <p className="text-sm text-brand-muted">{error}</p>
         </div>
       </div>
@@ -21,7 +21,7 @@ export function AnalysisGate({ children }: { children: React.ReactNode }) {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center w-full max-w-sm space-y-4">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 animate-pulse" />
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-brand-secondary animate-breathe" />
           <div>
             <p className="text-brand-text font-medium">Analyzing your conversations...</p>
             <p className="text-sm text-brand-muted mt-1">{progress.message}</p>

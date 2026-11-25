@@ -1,13 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import type { ReactNode } from "react";
-
 import { Card } from "@/components/ui/card";
-import type { ParsedMessage } from "@/lib/types/grok-data";
-import type { ParsedConversation } from "@/lib/types/grok-data";
+import type { ParsedConversation, ParsedMessage } from "@/lib/types/grok-data";
 import { formatDate } from "@/lib/utils/date-utils";
 import { truncate } from "@/lib/utils/format-utils";
-import Link from "next/link";
 
 interface SearchResult {
   conversation: ParsedConversation;
@@ -32,10 +30,7 @@ function highlightQuery(text: string, query: string): ReactNode {
       {parts.map((part, i) => {
         const isMatch = part.toLowerCase() === query.toLowerCase();
         return isMatch ? (
-          <mark
-            key={i}
-            className="bg-brand-primary/20 text-brand-primary font-medium rounded px-0.5"
-          >
+          <mark key={i} className="bg-brand-primary/20 text-brand-root font-medium rounded px-0.5">
             {part}
           </mark>
         ) : (
@@ -69,7 +64,7 @@ export function SearchResults({ results, query }: SearchResultsProps) {
       {results.map((result) => (
         <Link
           key={result.conversation.id}
-          href={`/conversation/${result.conversation.id}`}
+          href={`/conversation?id=${encodeURIComponent(result.conversation.id)}`}
           className="block"
         >
           <Card className="hover:border-brand-primary/20 transition-all">

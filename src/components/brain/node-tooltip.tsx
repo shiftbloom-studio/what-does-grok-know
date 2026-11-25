@@ -16,9 +16,9 @@ function sentimentLabel(score: number): string {
 }
 
 function sentimentIndicator(score: number): string {
-  if (score > 0.3) return "text-green-400";
-  if (score < -0.3) return "text-red-400";
-  return "text-yellow-400";
+  if (score > 0.3) return "text-[#9fe3b5]";
+  if (score < -0.3) return "text-brand-petal";
+  return "text-white/70";
 }
 
 export function NodeTooltip({ title, messageCount, date, sentiment, x, y }: NodeTooltipProps) {
@@ -31,7 +31,7 @@ export function NodeTooltip({ title, messageCount, date, sentiment, x, y }: Node
         top: 0,
       }}
     >
-      <div className="px-4 py-3 rounded-xl bg-black/85 backdrop-blur-xl border border-white/20 shadow-2xl max-w-[260px]">
+      <div className="px-4 py-3 rounded-xl bg-brand-deep/95 border border-white/10 max-w-[260px]">
         <p className="text-white text-sm font-semibold leading-snug truncate">{title}</p>
         <div className="mt-1.5 flex flex-col gap-0.5">
           <span className="text-white/50 text-[10px]">{messageCount} messages</span>

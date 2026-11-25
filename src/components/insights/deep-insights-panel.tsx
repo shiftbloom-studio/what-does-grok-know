@@ -1,10 +1,10 @@
 "use client";
 
+import { useMemo } from "react";
+import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Card } from "@/components/ui/card";
 import type { ConversationSentiment, TopicCluster } from "@/lib/types/analysis";
 import type { ParsedConversation } from "@/lib/types/grok-data";
-import { useMemo } from "react";
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 interface DeepInsightsPanelProps {
   topics: TopicCluster[];
@@ -87,7 +87,7 @@ export function DeepInsightsPanel({ topics, sentiments, conversations }: DeepIns
   return (
     <div className="space-y-4">
       <Card>
-        <h4 className="text-sm font-semibold text-brand-text mb-2">Topic Evolution Over Time</h4>
+        <h4 className="text-sm font-semibold text-brand-text mb-2">Topic evolution over time</h4>
         {timelineData.length > 1 ? (
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
@@ -96,7 +96,7 @@ export function DeepInsightsPanel({ topics, sentiments, conversations }: DeepIns
                 <YAxis tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
                 <Tooltip
                   contentStyle={{
-                    background: "#1a1a1a",
+                    background: "#1a1216",
                     border: "none",
                     borderRadius: "8px",
                     color: "#fff",
@@ -126,17 +126,17 @@ export function DeepInsightsPanel({ topics, sentiments, conversations }: DeepIns
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
-          <h4 className="text-sm font-semibold text-brand-text mb-2">Thinking Model Usage</h4>
+          <h4 className="text-sm font-semibold text-brand-text mb-2">Thinking model usage</h4>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-brand-muted">With Thinking Traces</span>
+              <span className="text-sm text-brand-muted">With thinking traces</span>
               <span className="text-lg font-bold text-brand-accent">
                 {thinkingStats.withThinking}
               </span>
             </div>
-            <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+            <div className="w-full bg-brand-panel rounded-full h-3 overflow-hidden">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-brand-accent to-brand-primary transition-all duration-500"
+                className="h-full rounded-full bg-brand-primary transition-all duration-500"
                 style={{ width: `${(thinkingStats.thinkingRate * 100).toFixed(1)}%` }}
               />
             </div>
@@ -144,14 +144,12 @@ export function DeepInsightsPanel({ topics, sentiments, conversations }: DeepIns
               {(thinkingStats.thinkingRate * 100).toFixed(1)}% of conversations use thinking models
             </p>
             <div className="flex items-center justify-between pt-2 border-t border-brand-border">
-              <span className="text-sm text-brand-muted">With Tool Use</span>
-              <span className="text-lg font-bold text-brand-primary">
-                {thinkingStats.withTools}
-              </span>
+              <span className="text-sm text-brand-muted">With tool use</span>
+              <span className="text-lg font-bold text-brand-root">{thinkingStats.withTools}</span>
             </div>
-            <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden">
+            <div className="w-full bg-brand-panel rounded-full h-3 overflow-hidden">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-brand-primary to-brand-gold transition-all duration-500"
+                className="h-full rounded-full bg-brand-petal transition-all duration-500"
                 style={{ width: `${(thinkingStats.toolRate * 100).toFixed(1)}%` }}
               />
             </div>
@@ -167,7 +165,7 @@ export function DeepInsightsPanel({ topics, sentiments, conversations }: DeepIns
           </h4>
           <div className="space-y-4">
             <div className="text-center">
-              <p className="text-xs text-brand-muted mb-2">Thinking Model Conversations</p>
+              <p className="text-xs text-brand-muted mb-2">Thinking model conversations</p>
               <p className="text-3xl font-bold text-brand-accent">
                 {sentimentComparison.thinkingAvg.toFixed(3)}
               </p>
@@ -177,8 +175,8 @@ export function DeepInsightsPanel({ topics, sentiments, conversations }: DeepIns
             </div>
             <div className="border-t border-brand-border" />
             <div className="text-center">
-              <p className="text-xs text-brand-muted mb-2">Standard Conversations</p>
-              <p className="text-3xl font-bold text-brand-primary">
+              <p className="text-xs text-brand-muted mb-2">Standard conversations</p>
+              <p className="text-3xl font-bold text-brand-root">
                 {sentimentComparison.standardAvg.toFixed(3)}
               </p>
               <p className="text-xs text-brand-muted mt-1">
@@ -199,7 +197,7 @@ export function DeepInsightsPanel({ topics, sentiments, conversations }: DeepIns
       </div>
 
       <Card>
-        <h4 className="text-sm font-semibold text-brand-text mb-2">Interest Shifts</h4>
+        <h4 className="text-sm font-semibold text-brand-text mb-2">Interest shifts</h4>
         {topTopics.length > 0 ? (
           <div className="space-y-3">
             {topTopics.map((topic, i) => (
@@ -215,7 +213,7 @@ export function DeepInsightsPanel({ topics, sentiments, conversations }: DeepIns
                     <span className="text-sm font-medium text-brand-text">{topic.label}</span>
                     <span className="text-xs text-brand-muted">{topic.size} conversations</span>
                   </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                  <div className="w-full bg-brand-panel rounded-full h-2 overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-500"
                       style={{
@@ -229,7 +227,7 @@ export function DeepInsightsPanel({ topics, sentiments, conversations }: DeepIns
                   {topic.keywords.slice(0, 4).map((kw) => (
                     <span
                       key={kw}
-                      className="text-[10px] px-1.5 py-0.5 rounded-full bg-gray-100 text-brand-muted"
+                      className="text-[10px] px-1.5 py-0.5 rounded-full bg-brand-panel text-brand-muted"
                     >
                       {kw}
                     </span>

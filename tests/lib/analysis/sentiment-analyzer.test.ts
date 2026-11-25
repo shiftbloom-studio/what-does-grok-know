@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 
 /**
  * Minimal inline sentiment scorer for testing purposes.
@@ -7,15 +7,45 @@ import { describe, it, expect } from "vitest";
  */
 
 const POSITIVE_WORDS = new Set([
-  "good", "great", "excellent", "amazing", "wonderful", "fantastic",
-  "love", "happy", "awesome", "brilliant", "perfect", "beautiful",
-  "helpful", "thanks", "thank", "appreciate", "nice", "best",
+  "good",
+  "great",
+  "excellent",
+  "amazing",
+  "wonderful",
+  "fantastic",
+  "love",
+  "happy",
+  "awesome",
+  "brilliant",
+  "perfect",
+  "beautiful",
+  "helpful",
+  "thanks",
+  "thank",
+  "appreciate",
+  "nice",
+  "best",
 ]);
 
 const NEGATIVE_WORDS = new Set([
-  "bad", "terrible", "awful", "horrible", "hate", "worst",
-  "poor", "ugly", "annoying", "broken", "wrong", "error",
-  "fail", "failed", "failure", "problem", "issue", "bug",
+  "bad",
+  "terrible",
+  "awful",
+  "horrible",
+  "hate",
+  "worst",
+  "poor",
+  "ugly",
+  "annoying",
+  "broken",
+  "wrong",
+  "error",
+  "fail",
+  "failed",
+  "failure",
+  "problem",
+  "issue",
+  "bug",
 ]);
 
 interface SentimentResult {
@@ -26,7 +56,11 @@ interface SentimentResult {
 }
 
 function analyzeSentiment(text: string): SentimentResult {
-  const words = text.toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/).filter(Boolean);
+  const words = text
+    .toLowerCase()
+    .replace(/[^a-z\s]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
   const positive: string[] = [];
   const negative: string[] = [];
   let score = 0;

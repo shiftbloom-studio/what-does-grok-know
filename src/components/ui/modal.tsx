@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils/format-utils";
 import { AnimatePresence, motion } from "motion/react";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils/format-utils";
 
 interface ModalProps {
   open: boolean;
@@ -23,7 +23,7 @@ export function Modal({ open, onClose, children, className }: ModalProps) {
           transition={{ duration: 0.2 }}
         >
           <motion.div
-            className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+            className="absolute inset-0 bg-brand-deep/30"
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -32,7 +32,7 @@ export function Modal({ open, onClose, children, className }: ModalProps) {
 
           <motion.div
             className={cn(
-              "relative bg-white/90 backdrop-blur-md border border-white/30 rounded-2xl p-6 shadow-xl max-w-lg w-full max-h-[85vh] overflow-y-auto",
+              "relative bg-white border border-brand-border rounded-2xl p-6 shadow-[0_24px_48px_-24px_rgba(26,18,22,0.25)] max-w-lg w-full max-h-[85vh] overflow-y-auto",
               className,
             )}
             initial={{ opacity: 0, scale: 0.95, y: 10 }}

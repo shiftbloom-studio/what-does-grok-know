@@ -1,21 +1,27 @@
-"use client";
-
+/**
+ * Margin sprinkles from the brandbook (spark, cross, dot). Max seven per view, never behind content.
+ * Kept under the old name so existing layouts don't need to change.
+ */
 export function FloatingOrbs() {
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10" aria-hidden="true">
-      <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-br from-brand-primary/25 to-brand-accent/10 blur-3xl animate-float" />
-      <div
-        className="absolute -top-20 -right-32 w-80 h-80 rounded-full bg-gradient-to-br from-brand-accent/20 to-brand-gold/10 blur-3xl animate-float"
-        style={{ animationDelay: "1.5s" }}
-      />
-      <div
-        className="absolute -bottom-32 left-1/3 w-96 h-96 rounded-full bg-gradient-to-br from-brand-gold/15 to-brand-warm/10 blur-3xl animate-float"
-        style={{ animationDelay: "3s" }}
-      />
-      <div
-        className="absolute -bottom-40 -right-40 w-72 h-72 rounded-full bg-gradient-to-br from-brand-secondary/20 to-brand-primary/10 blur-3xl animate-float opacity-60"
-        style={{ animationDelay: "4.5s" }}
-      />
+    <div
+      className="pointer-events-none fixed inset-0 -z-10 hidden overflow-hidden lg:block"
+      aria-hidden="true"
+    >
+      <svg className="absolute left-[4%] top-[18%]" width="14" height="14" viewBox="0 0 14 14">
+        <path d="M7 0v14M0 7h14" stroke="#FF8FAB" strokeWidth="1.5" />
+      </svg>
+      <svg className="absolute right-[6%] top-[12%]" width="18" height="18" viewBox="0 0 18 18">
+        <path
+          d="M9 0c.6 4.6 3.4 7.4 9 9-5.6 1.6-8.4 4.4-9 9-.6-4.6-3.4-7.4-9-9 5.6-1.6 8.4-4.4 9-9z"
+          fill="#FF2E52"
+        />
+      </svg>
+      <span className="absolute bottom-[22%] left-[7%] h-[7px] w-[7px] rounded-full bg-brand-primary" />
+      <span className="absolute bottom-[30%] right-[5%] h-[5px] w-[5px] rounded-full bg-brand-petal" />
+      <svg className="absolute bottom-[10%] right-[12%]" width="12" height="12" viewBox="0 0 12 12">
+        <path d="M6 0v12M0 6h12" stroke="#FFC2D3" strokeWidth="1.5" />
+      </svg>
     </div>
   );
 }

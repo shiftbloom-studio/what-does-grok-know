@@ -4,66 +4,28 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
 
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
-  lint:
-    name: Lint
-    runs-on:
-      group: Default
-      labels: [self-hosted, linux, x64]
+  check:
+    name: Lint, types, tests, build
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 26
           cache: npm
       - run: npm ci
       - run: npm run lint
-
-  type-check:
-    name: Type Check
-    runs-on:
-      group: Default
-      labels: [self-hosted, linux, x64]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
       - run: npm run type-check
-
-  test:
-    name: Test
-    runs-on:
-      group: Default
-      labels: [self-hosted, linux, x64]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
       - run: npm test
-
-  build:
-    name: Build
-    runs-on:
-      group: Default
-      labels: [self-hosted, linux, x64]
-    needs: [lint, type-check, test]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
       - run: npm run build
+      - name: Check the Worker bundles
+        run: npx wrangler deploy --dry-run --outdir dist

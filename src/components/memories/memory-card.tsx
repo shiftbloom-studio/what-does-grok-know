@@ -1,15 +1,15 @@
+import Link from "next/link";
 import type { Memory } from "@/lib/types/analysis";
 import { formatDate } from "@/lib/utils/date-utils";
-import Link from "next/link";
 
 interface MemoryCardProps {
   memory: Memory;
 }
 
 const TYPE_CONFIG: Record<Memory["type"], { label: string; color: string; bgColor: string }> = {
-  fact: { label: "Fact", color: "text-blue-700", bgColor: "bg-blue-50" },
-  decision: { label: "Decision", color: "text-purple-700", bgColor: "bg-purple-50" },
-  learning: { label: "Learning", color: "text-green-700", bgColor: "bg-green-50" },
+  fact: { label: "Fact", color: "text-brand-text", bgColor: "bg-brand-panel" },
+  decision: { label: "Decision", color: "text-brand-root", bgColor: "bg-brand-secondary" },
+  learning: { label: "Learning", color: "text-brand-text", bgColor: "bg-brand-petal/25" },
   preference: { label: "Preference", color: "text-orange-700", bgColor: "bg-orange-50" },
   goal: { label: "Goal", color: "text-rose-700", bgColor: "bg-rose-50" },
 };
@@ -19,7 +19,7 @@ export function MemoryCard({ memory }: MemoryCardProps) {
   const confidencePercent = Math.round(memory.confidence * 100);
 
   return (
-    <div className="bg-white/70 backdrop-blur-sm border border-white/30 rounded-2xl p-5 transition-all duration-300 hover:shadow-lg">
+    <div className="bg-white border border-brand-border rounded-2xl p-5 transition-all duration-300 hover:border-brand-petal">
       <div className="flex items-start justify-between gap-3 mb-3">
         <span
           className={
@@ -37,17 +37,17 @@ export function MemoryCard({ memory }: MemoryCardProps) {
 
       <div className="flex items-center justify-between">
         <Link
-          href={"/conversation/$" + "{memory.conversationId}"}
-          className="text-xs text-brand-primary hover:underline"
+          href={`/conversation?id=${encodeURIComponent(memory.conversationId)}`}
+          className="text-xs text-brand-root hover:underline"
         >
           View source conversation
         </Link>
 
         <div className="flex items-center gap-2">
           <span className="text-[10px] text-brand-muted">Confidence</span>
-          <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+          <div className="w-16 h-1.5 bg-brand-panel rounded-full overflow-hidden">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-brand-primary to-brand-accent"
+              className="h-full rounded-full bg-brand-primary"
               style={{ width: "$" + "{confidencePercent}%" }}
             />
           </div>

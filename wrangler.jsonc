@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "what-does-grok-know",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-01",
+  "workers_dev": false,
+  "preview_urls": false,
+  // Next.js static export (npm run build) ends up in out/.
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    // The Worker only runs for these paths; everything else is served straight from the asset store.
+    // Security headers for static files come from public/_headers.
+    "run_worker_first": ["/fonts/*", "/privacy", "/datenschutz", "/imprint", "/impressum"]
+  },
+  // No routes on purpose: attach your own custom domain once (dashboard or API). Deploys keep it.
+  "observability": { "enabled": false },
+  // Operator details for the legal pages are a secret, so redeploys never overwrite or expose them:
+  //   wrangler secret put LEGAL   (JSON, see README)
+}

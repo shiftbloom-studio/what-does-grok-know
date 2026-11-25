@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useRef, useState } from "react";
 import {
   getAllConversations,
   getAllMessages,
@@ -7,7 +8,6 @@ import {
   saveAnalysis,
 } from "@/lib/storage/db-queries";
 import type { AnalysisProgress, AnalysisResult } from "@/lib/types/analysis";
-import { useCallback, useRef, useState } from "react";
 
 const INITIAL_PROGRESS: AnalysisProgress = {
   phase: "parsing",

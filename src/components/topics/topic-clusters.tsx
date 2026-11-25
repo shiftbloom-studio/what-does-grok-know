@@ -31,10 +31,10 @@ export function TopicClusters({ clusters, onClusterClick, activeClusterId }: Top
             key={cluster.id}
             type="button"
             onClick={() => onClusterClick?.(cluster)}
-            className={`text-left bg-white/70 backdrop-blur-sm border rounded-2xl p-5 transition-all duration-300 hover:shadow-lg cursor-pointer ${
+            className={`text-left bg-white border rounded-2xl p-5 transition-all duration-300 hover:border-brand-petal cursor-pointer ${
               isActive
                 ? "border-brand-primary ring-2 ring-brand-primary/20"
-                : "border-white/30 hover:border-brand-primary/20"
+                : "border-brand-border hover:border-brand-petal"
             }`}
             style={{ transform: `scale(${scale})` }}
           >
@@ -66,7 +66,7 @@ export function TopicClusters({ clusters, onClusterClick, activeClusterId }: Top
             </div>
 
             <div className="mt-3">
-              <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+              <div className="w-full h-1.5 bg-brand-panel rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{

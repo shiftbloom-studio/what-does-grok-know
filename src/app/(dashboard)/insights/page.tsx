@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { BehavioralPanel } from "@/components/insights/behavioral-panel";
 import { CognitivePanel } from "@/components/insights/cognitive-panel";
 import { DeepInsightsPanel } from "@/components/insights/deep-insights-panel";
@@ -11,14 +12,13 @@ import { Tabs } from "@/components/ui/tabs";
 import { useAnalysisContext } from "@/lib/context/analysis-provider";
 import { getAllConversations } from "@/lib/storage/db-queries";
 import type { ParsedConversation } from "@/lib/types/grok-data";
-import { useEffect, useState } from "react";
 
 const INSIGHT_TABS = [
   { id: "overview", label: "Overview" },
   { id: "behavioral", label: "Behavioral" },
   { id: "cognitive", label: "Cognitive" },
   { id: "emotional", label: "Emotional" },
-  { id: "deep", label: "Deep Insights" },
+  { id: "deep", label: "Deep insights" },
 ];
 
 export default function InsightsPage() {
@@ -44,8 +44,10 @@ export default function InsightsPage() {
     return (
       <div className="space-y-4">
         <div>
-          <h1 className="text-2xl font-bold text-brand-text mb-1">Insights</h1>
-          <p className="text-sm text-brand-muted">Deep analysis of your Grok usage patterns</p>
+          <h1 className="mb-1 text-3xl font-semibold text-brand-text">Insights</h1>
+          <p className="text-sm text-brand-muted">
+            When you write to Grok, and how the tone shifts over the months.
+          </p>
         </div>
         <Skeleton className="h-10 w-96 rounded-lg" />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -61,8 +63,10 @@ export default function InsightsPage() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-2xl font-bold text-brand-text mb-1">Insights</h1>
-        <p className="text-sm text-brand-muted">Deep analysis of your Grok usage patterns</p>
+        <h1 className="mb-1 text-3xl font-semibold text-brand-text">Insights</h1>
+        <p className="text-sm text-brand-muted">
+          When you write to Grok, and how the tone shifts over the months.
+        </p>
       </div>
 
       <AnalysisGate>

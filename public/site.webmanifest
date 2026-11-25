@@ -1,16 +1,10 @@
 {
-  "name": "What Does Grok Know?",
-  "short_name": "GrokKnow",
-  "description": "Explore your xAI Grok conversations as an interactive 3D neural network with deep NLP analytics",
+  "name": "what does grok know?",
+  "short_name": "grok brain",
+  "description": "Your Grok chat export as a 3D map, analysed in your browser.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0f",
-  "theme_color": "#e63946",
-  "icons": [
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-    }
-  ]
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
 }

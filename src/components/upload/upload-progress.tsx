@@ -24,7 +24,7 @@ export function UploadProgress({ phase, percent, className }: UploadProgressProp
     <div className={cn("w-full max-w-md mx-auto space-y-4", className)}>
       <div className="text-center">
         <div className="w-12 h-12 mx-auto rounded-full bg-brand-primary/10 flex items-center justify-center mb-3">
-          <svg className="w-6 h-6 text-brand-primary animate-spin" fill="none" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-brand-root animate-spin" fill="none" viewBox="0 0 24 24">
             <circle
               className="opacity-25"
               cx="12"

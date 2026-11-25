@@ -1,7 +1,7 @@
+import type { ReactNode } from "react";
 import { getModelColor, getModelLabel } from "@/lib/constants/models";
 import type { ParsedMessage } from "@/lib/types/grok-data";
 import { formatDateTime } from "@/lib/utils/date-utils";
-import type { ReactNode } from "react";
 
 interface MessageBubbleProps {
   message: ParsedMessage;
@@ -21,9 +21,9 @@ function formatCodeBlocks(text: string): ReactNode {
           return (
             <pre
               key={i}
-              className="my-2 p-3 bg-gray-900 text-gray-100 rounded-xl text-xs overflow-x-auto"
+              className="my-2 p-3 bg-brand-deep text-white/90 rounded-xl text-xs overflow-x-auto"
             >
-              {lang && <div className="text-gray-400 text-[10px] mb-1">{lang}</div>}
+              {lang && <div className="text-white/50 text-[10px] mb-1">{lang}</div>}
               <code>{code}</code>
             </pre>
           );
@@ -45,7 +45,7 @@ export function MessageBubble({ message, isHuman }: MessageBubbleProps) {
         className={`max-w-[80%] rounded-2xl px-4 py-3 ${
           isHuman
             ? "bg-brand-primary text-white rounded-br-sm"
-            : "bg-white border border-white/30 text-brand-text rounded-bl-sm"
+            : "bg-white border border-brand-border text-brand-text rounded-bl-sm"
         }`}
       >
         <div className="flex items-center gap-2 mb-1">

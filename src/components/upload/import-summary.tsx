@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils/format-utils";
-import { useEffect, useRef, useState } from "react";
 
 interface ImportStats {
   totalConversations: number;
@@ -50,17 +50,17 @@ function AnimatedNumber({ value }: { value: number }) {
 export function ImportSummary({ stats, className }: ImportSummaryProps) {
   const items = [
     { label: "Conversations", value: stats.totalConversations, icon: "\u{1F4AC}" },
-    { label: "Total Messages", value: stats.totalMessages, icon: "\u{1F4DD}" },
-    { label: "Your Messages", value: stats.totalHuman, icon: "\u{1F464}" },
-    { label: "Grok Responses", value: stats.totalAssistant, icon: "\u{1F916}" },
+    { label: "Total messages", value: stats.totalMessages, icon: "\u{1F4DD}" },
+    { label: "Your messages", value: stats.totalHuman, icon: "\u{1F464}" },
+    { label: "Grok responses", value: stats.totalAssistant, icon: "\u{1F916}" },
   ];
 
   return (
     <div className={cn("w-full max-w-lg mx-auto space-y-6", className)}>
       <div className="text-center">
-        <div className="w-14 h-14 mx-auto rounded-full bg-green-100 flex items-center justify-center mb-3">
+        <div className="w-14 h-14 mx-auto rounded-full bg-brand-secondary flex items-center justify-center mb-3">
           <svg
-            className="w-7 h-7 text-green-600"
+            className="w-7 h-7 text-brand-root"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -69,7 +69,7 @@ export function ImportSummary({ stats, className }: ImportSummaryProps) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-xl font-bold text-brand-text">Import Complete</h3>
+        <h3 className="text-xl font-bold text-brand-text">Import complete</h3>
         <p className="text-sm text-brand-muted mt-1">Your Grok data has been loaded</p>
       </div>
 
@@ -98,7 +98,7 @@ export function ImportSummary({ stats, className }: ImportSummaryProps) {
             {stats.modelsFound.map((model) => (
               <span
                 key={model}
-                className="px-2.5 py-0.5 rounded-full bg-brand-accent/10 text-brand-accent text-xs font-medium"
+                className="px-2.5 py-0.5 rounded-full bg-brand-secondary text-brand-root text-xs font-medium"
               >
                 {model}
               </span>

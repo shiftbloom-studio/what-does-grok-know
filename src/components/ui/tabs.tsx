@@ -24,13 +24,13 @@ export function Tabs({ tabs, activeTab, onTabChange, className }: TabsProps) {
           onClick={() => onTabChange(tab.id)}
           className={cn(
             "px-4 py-2.5 text-sm font-medium transition-all duration-200 relative cursor-pointer",
-            activeTab === tab.id ? "text-brand-primary" : "text-brand-muted hover:text-brand-text",
+            activeTab === tab.id ? "text-brand-root" : "text-brand-muted hover:text-brand-text",
           )}
         >
           {tab.label}
           {activeTab === tab.id && (
             <>
-              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-brand-primary/0 via-brand-primary to-brand-primary/0 rounded-full" />
+              <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary rounded-full" />
               <span className="absolute inset-0 bg-brand-primary/5 rounded-lg" />
             </>
           )}

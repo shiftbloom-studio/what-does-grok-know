@@ -1,7 +1,7 @@
 "use client";
 
-import type { ParsedConversation } from "@/lib/types/grok-data";
 import { useMemo, useState } from "react";
+import type { ParsedConversation } from "@/lib/types/grok-data";
 
 interface HeatmapCalendarProps {
   conversations: ParsedConversation[];
@@ -14,7 +14,7 @@ interface DayCell {
 }
 
 function getColorIntensity(count: number, maxCount: number): string {
-  if (count === 0) return "bg-gray-100";
+  if (count === 0) return "bg-brand-panel";
   const ratio = count / Math.max(maxCount, 1);
   if (ratio <= 0.25) return "bg-brand-primary/20";
   if (ratio <= 0.5) return "bg-brand-primary/40";
@@ -110,7 +110,7 @@ export function HeatmapCalendar({ conversations }: HeatmapCalendarProps) {
   }, [grid]);
 
   return (
-    <div className="bg-white/70 backdrop-blur-sm border border-white/30 rounded-2xl p-6">
+    <div className="bg-white border border-brand-border rounded-2xl p-6">
       <h3 className="text-sm font-semibold text-brand-text mb-4">Activity</h3>
       <div className="overflow-x-auto">
         <div className="inline-flex flex-col gap-0.5 relative min-w-fit">
@@ -164,7 +164,7 @@ export function HeatmapCalendar({ conversations }: HeatmapCalendarProps) {
 
           <div className="flex items-center gap-1 mt-3 ml-8">
             <span className="text-[10px] text-brand-muted mr-1">Less</span>
-            <div className="w-[12px] h-[12px] rounded-[2px] bg-gray-100" />
+            <div className="w-[12px] h-[12px] rounded-[2px] bg-brand-panel" />
             <div className="w-[12px] h-[12px] rounded-[2px] bg-brand-primary/20" />
             <div className="w-[12px] h-[12px] rounded-[2px] bg-brand-primary/40" />
             <div className="w-[12px] h-[12px] rounded-[2px] bg-brand-primary/70" />

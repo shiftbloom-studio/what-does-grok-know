@@ -1,8 +1,11 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Wordmark } from "@/components/brand/wordmark";
 import { Footer } from "@/components/layout/footer";
-import { FloatingOrbs } from "@/components/shared/floating-orbs";
-import { GradientText } from "@/components/shared/gradient-text";
+import { BrainPreview } from "@/components/shared/brain-preview";
 import { Button } from "@/components/ui/button";
 import { ImportSummary } from "@/components/upload/import-summary";
 import { UploadProgress } from "@/components/upload/upload-progress";
@@ -10,8 +13,6 @@ import { UploadZone } from "@/components/upload/upload-zone";
 import { loadDemoData } from "@/lib/demo/load-demo";
 import { hasData } from "@/lib/storage/db-queries";
 import { db } from "@/lib/storage/db-schema";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
 
 type PagePhase = "idle" | "parsing" | "storing" | "done";
 
@@ -92,7 +93,7 @@ export default function LandingPage() {
           setProgressPercent(100);
           setPhase("done");
         } catch (err) {
-          setError(`Storage failed: ${(err as Error).message}`);
+          setError(`Could not save the export in this browser: ${(err as Error).message}`);
           setPhase("idle");
         }
 
@@ -110,36 +111,49 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col relative">
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-16">
-        <FloatingOrbs />
+    <div className="relative flex min-h-screen flex-col">
+      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5">
+        <span className="label">a shiftbloom studio side project</span>
+        <Link href="/how-to" className="text-sm text-brand-muted hover:text-brand-text">
+          How to get your export
+        </Link>
+      </header>
 
-        <div className="w-full max-w-xl space-y-8 text-center">
-          <div className="space-y-3">
-            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight">
-              <GradientText>What Does Grok Know?</GradientText>
+      <main className="mx-auto grid w-full max-w-6xl flex-1 items-center gap-12 px-5 pb-16 pt-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+        <div className="animate-unfurl space-y-8">
+          <div className="space-y-5">
+            <h1 className="text-5xl leading-[1.02] sm:text-6xl">
+              <Wordmark />
             </h1>
-            <p className="text-lg text-brand-muted max-w-md mx-auto">
-              Explore your Grok conversations. Discover patterns, insights, and memories hidden in
-              your chats.
+            <p className="max-w-xl text-lg leading-relaxed text-brand-text/85">
+              Load the export from your xAI account and each conversation becomes a point in 3D
+              space, next to the chats it has the most in common with. Click a point to reread that
+              chat. The timeline next door shows which nights you wrote the most.
             </p>
           </div>
 
           {phase === "idle" && (
-            <>
+            <div className="space-y-4">
               <UploadZone onFileLoaded={handleFileLoaded} />
-              {error && <p className="text-sm text-brand-primary font-medium">{error}</p>}
-              <button
-                type="button"
-                onClick={async () => {
-                  await loadDemoData();
-                  router.push("/brain");
-                }}
-                className="text-sm text-brand-muted hover:text-brand-accent transition-colors underline"
-              >
-                or try with demo data
-              </button>
-            </>
+              {error && <p className="text-sm font-medium text-brand-root">{error}</p>}
+              <p className="text-sm text-brand-muted">
+                The file is read by this tab and stored on this device.{" "}
+                <Link href="/privacy-info" className="link-seed">
+                  How to check that
+                </Link>
+                <span className="px-2 text-brand-border">/</span>
+                <button
+                  type="button"
+                  onClick={async () => {
+                    await loadDemoData();
+                    router.push("/brain");
+                  }}
+                  className="link-seed cursor-pointer"
+                >
+                  Open the demo account
+                </button>
+              </p>
+            </div>
           )}
 
           {(phase === "parsing" || phase === "storing") && (
@@ -150,12 +164,28 @@ export default function LandingPage() {
             <div className="space-y-6">
               <ImportSummary stats={stats} />
               <Button size="lg" onClick={() => router.push("/brain")}>
-                Explore Your Brain
+                Open the brain view
               </Button>
             </div>
           )}
+
+          <dl className="grid max-w-xl grid-cols-2 gap-x-6 gap-y-4 border-t border-brand-border pt-6 sm:grid-cols-4">
+            {[
+              ["0", "uploads"],
+              ["200 MB", "max export size"],
+              ["6", "ways to look at it"],
+              ["AGPL-3.0", "open source"],
+            ].map(([value, label]) => (
+              <div key={label}>
+                <dt className="font-mono text-lg text-brand-text">{value}</dt>
+                <dd className="label mt-1">{label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
-      </div>
+
+        <BrainPreview className="animate-unfurl hidden lg:block" />
+      </main>
       <Footer />
     </div>
   );

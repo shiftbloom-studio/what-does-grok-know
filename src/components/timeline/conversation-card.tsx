@@ -1,9 +1,9 @@
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { getModelColor, getModelLabel } from "@/lib/constants/models";
 import type { ParsedConversation } from "@/lib/types/grok-data";
 import { formatDate } from "@/lib/utils/date-utils";
 import { formatNumber } from "@/lib/utils/format-utils";
-import Link from "next/link";
 
 interface ConversationCardProps {
   conversation: ParsedConversation;
@@ -15,18 +15,18 @@ export function ConversationCard({ conversation }: ConversationCardProps) {
 
   return (
     <Link
-      href={`/conversation/${id}`}
-      className="block bg-white/70 backdrop-blur-sm border border-white/30 rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:border-brand-primary/20 group"
+      href={`/conversation?id=${encodeURIComponent(id)}`}
+      className="block bg-white border border-brand-border rounded-2xl p-5 transition-all duration-300 hover:border-brand-petal group"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
             {starred && (
-              <span className="text-yellow-500 text-sm" aria-label="Starred">
+              <span className="text-brand-primary text-sm" role="img" aria-label="Starred">
                 &#9733;
               </span>
             )}
-            <h4 className="text-sm font-semibold text-brand-text truncate group-hover:text-brand-primary transition-colors">
+            <h4 className="text-sm font-semibold text-brand-text truncate group-hover:text-brand-root transition-colors">
               {title || "Untitled conversation"}
             </h4>
           </div>

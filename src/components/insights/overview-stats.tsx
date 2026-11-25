@@ -1,10 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { StatCard } from "@/components/ui/stat-card";
 import type { OverviewStats as OverviewStatsType } from "@/lib/types/analysis";
 import { formatDate } from "@/lib/utils/date-utils";
 import { formatNumber } from "@/lib/utils/format-utils";
-import { useEffect, useState } from "react";
 
 interface OverviewStatsProps {
   stats: OverviewStatsType;
@@ -106,7 +106,7 @@ export function OverviewStats({ stats }: OverviewStatsProps) {
           </svg>
         }
         value={`${dateStart} - ${dateEnd}`}
-        label="Date Range"
+        label="Date range"
       />
       <StatCard
         icon={
@@ -125,7 +125,7 @@ export function OverviewStats({ stats }: OverviewStatsProps) {
           </svg>
         }
         value={String(stats.modelsUsed.length)}
-        label="Models Used"
+        label="Models used"
       />
       <StatCard
         icon={
@@ -163,7 +163,7 @@ export function OverviewStats({ stats }: OverviewStatsProps) {
           </svg>
         }
         value={formatNumber(animAvgLength)}
-        label="Avg Length"
+        label="Avg length"
       />
     </div>
   );

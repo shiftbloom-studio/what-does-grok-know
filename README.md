@@ -1,306 +1,106 @@
-<div align="center">
+# what does grok know?
 
-<img src="public/favicon.svg" alt="What Does Grok Know? Logo" width="120" />
+Load the conversation export from your xAI account and walk through it as a 3D map. Every chat is a point, chats about similar things sit close together, and around that you get a timeline, a topic list, some statistics about when and how you write, and the facts you mentioned about yourself along the way.
 
-# What Does Grok Know?
+Everything happens in your browser. The export is parsed in a Web Worker, stored in IndexedDB on your device and never sent anywhere. The Content Security Policy only allows network requests to the site's own origin, so the page could not upload your chats even if it tried.
 
-### Your Grok conversations, visualized as a living neural network
+Live at [what-does-grok-know.shiftbloom.studio](https://what-does-grok-know.shiftbloom.studio). Not affiliated with xAI or X.
 
-[![Next.js 15](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org)
-[![React 19](https://img.shields.io/badge/React-19-61dafb?logo=react)](https://react.dev)
-[![Three.js](https://img.shields.io/badge/Three.js-r173-black?logo=three.js)](https://threejs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript)](https://typescriptlang.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![100% Private](https://img.shields.io/badge/Privacy-100%25_Client_Side-22c55e)](#privacy)
+![Start page](docs/screenshots/start.png)
 
-**Turn your xAI Grok chat export into an explorable 3D brain.**
-No servers. No tracking. Everything runs in your browser.
+## Views
 
-[Live Demo](https://grok-brain.vercel.app) · [Report Bug](https://github.com/fabianzimber/what-does-grok-know/issues) · [Request Feature](https://github.com/fabianzimber/what-does-grok-know/issues)
-
----
-
-</div>
-
-## The Idea
-
-You have had hundreds of conversations with Grok. But what does Grok actually *know* about you?
-
-**What Does Grok Know?** answers that question by transforming your raw Grok chat export into an interactive 3D neural network — where every conversation is a neuron, every topic is a cluster, and every connection reveals hidden patterns in how you think, work, and create.
-
-This is not just a chat viewer. It is a **cognitive mirror**.
-
----
-
-## Screenshots
-
-<div align="center">
-
-### Import Your Data
-*Drop your Grok export and watch the magic happen*
-
-<img src="docs/screenshots/landing-import.png" alt="Landing page showing import complete with 214 conversations and 1948 messages" width="800" />
-
-### 3D Neural Network Brain
-*Every conversation is a neuron. Topics form clusters. Connections emerge.*
-
-<img src="docs/screenshots/brain-network.png" alt="3D neural network visualization showing topic clusters with 214 conversations and 200 connections" width="800" />
-
-### Deep Insights Dashboard
-*Topic evolution, sentiment analysis, and cognitive patterns over time*
-
-<img src="docs/screenshots/insights-deep.png" alt="Deep insights showing topic evolution chart and thinking model usage" width="800" />
-
-### Cognitive Profile
-*Vocabulary richness, question ratios, and code-to-text patterns*
-
-<img src="docs/screenshots/insights-cognitive.png" alt="Cognitive analysis showing vocabulary stats and code block ratios" width="800" />
-
-### Timeline & Activity Heatmap
-*GitHub-style activity calendar for your Grok conversations*
-
-<img src="docs/screenshots/timeline-heatmap.png" alt="Timeline page with activity heatmap calendar" width="800" />
-
-### Memory Extraction
-*Facts, decisions, goals, and preferences extracted from your conversations*
-
-<img src="docs/screenshots/memories.png" alt="Memories page showing extracted facts, decisions, and goals" width="800" />
-
-### Conversation Search
-*Full-text search across all your conversations*
-
-<img src="docs/screenshots/search.png" alt="Search page with search results" width="800" />
-
-### Conversation Detail
-*Read any conversation with syntax highlighting and message threading*
-
-<img src="docs/screenshots/conversation-detail.png" alt="Conversation detail view with message bubbles" width="800" />
-
-</div>
----
-
-## Features
-
-### 3D Neural Network Visualization
-- **Force-directed graph** with physics simulation
-- **InstancedMesh rendering** — handles 1000+ nodes at 60fps
-- **Topic clustering** with color-coded communities
-- **Interactive nodes** — hover for details, click to read
-- **Multiple color modes** — by topic, sentiment, date, or message count
-- **Breathing animation** and hover glow effects
-
-### NLP Analytics Engine (runs in Web Workers)
-- **Topic clustering** via TF-IDF keyword extraction
-- **Sentiment analysis** per conversation and per message
-- **Behavioral profiling** — peak hours, model preferences, tool usage
-- **Cognitive profiling** — vocabulary richness, question ratios, code patterns
-- **Memory extraction** — facts, decisions, learnings, preferences, goals
-
-### Dashboard Views
 | View | What it shows |
-|------|--------------|
-| **Brain** | Interactive 3D neural network of all conversations |
-| **Insights** | Behavioral, cognitive, emotional, and deep analysis panels |
-| **Timeline** | GitHub-style activity heatmap + conversation timeline |
-| **Memories** | Extracted facts, decisions, goals, and preferences |
-| **Search** | Full-text search with highlighted results |
-| **Conversation** | Individual conversation reader with message threading |
+| --- | --- |
+| Brain | 3D map of all conversations, colored by topic, mood, date, model or activity. Click a point to open the chat. |
+| Timeline | Activity heatmap by day and a month-by-month list. |
+| Topics | Topic clusters from TF-IDF keywords, with the conversations in each. |
+| Insights | Hours and weekdays you write, models used, vocabulary, questions vs. statements, mood over time. |
+| Memories | Facts, decisions and lessons pattern-matched from your own messages. |
+| Search | Full-text search over every message. |
 
-### Design
-- **Glass-morphism UI** with frosted-glass cards and gradient accents
-- **Animated backgrounds** with floating orbs and gradient shifts
-- **Responsive layout** — works on desktop and tablet
-- **Dark mode by default** — easy on the eyes, bold on personality
+![Brain view](docs/screenshots/brain.png)
 
----
+![Insights](docs/screenshots/insights.png)
 
-## Privacy
+## Getting your export
 
-> **Your data never leaves your browser.**
+Request your data at [accounts.x.ai](https://accounts.x.ai) (or through the X archive if you only used Grok inside X), unzip it and load the JSON file with your conversations. The in-app help page has the details.
 
-- All processing happens client-side in Web Workers
-- Data is stored in IndexedDB (your browser local database)
-- No API calls, no tracking, no analytics, no cookies
-- No server-side storage — the app is a static Next.js site
-- You can verify: check the Network tab — zero external requests after page load
----
+## How it works
 
-## Tech Stack
+1. **Parse.** `src/lib/workers/parse-worker.ts` reads the export (MongoDB-style JSON with `conversations` and `responses`) off the main thread.
+2. **Store.** Conversations and messages go into IndexedDB via Dexie (`GrokBrainDB`).
+3. **Analyse.** `src/lib/workers/analysis-worker.ts` computes topics (TF-IDF clustering), sentiment (word lists), behaviour and writing statistics, and extracts memories. No AI model, no API.
+4. **Draw.** The brain view lays the graph out with a force-directed layout and renders it with Three.js through react-three-fiber.
 
-| Layer | Technology |
-|-------|-----------|
-| **Framework** | Next.js 15 (App Router, Turbopack) |
-| **UI** | React 19, TailwindCSS v4 |
-| **3D** | Three.js r173, @react-three/fiber, @react-three/drei |
-| **Charts** | Recharts |
-| **Animations** | Motion (Framer Motion) |
-| **Storage** | Dexie.js v4 (IndexedDB) |
-| **Analysis** | Custom NLP engine in Web Workers |
-| **Language** | TypeScript (strict mode) |
-| **Linting** | Biome |
-| **Testing** | Vitest + Testing Library |
+"Delete data" in the header wipes the database.
 
----
+## Stack
 
-## Getting Started
-
-### Prerequisites
-
-- **Node.js** 18+ (20+ recommended)
-- **npm** 9+ or **pnpm** 8+
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/fabianzimber/what-does-grok-know.git
-cd what-does-grok-know
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Getting Your Grok Data
-
-1. Go to [x.com/i/grok](https://x.com/i/grok) (or wherever you use Grok)
-2. Request your data export / download your grok-chats.json
-3. Drop the JSON file into the app
-4. Watch your conversations transform into a neural network
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
----
-
-## Project Structure
-
-```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── (dashboard)/        # Dashboard layout group
-│   │   ├── brain/          # 3D neural network page
-│   │   ├── insights/       # Analytics dashboard
-│   │   ├── timeline/       # Activity heatmap
-│   │   ├── memories/       # Extracted memories
-│   │   ├── search/         # Full-text search
-│   │   └── conversation/   # Conversation reader
-│   └── layout.tsx          # Root layout with SEO
-├── components/
-│   ├── brain/              # 3D visualization components
-│   ├── insights/           # Analytics panel components
-│   ├── layout/             # Sidebar, header, floating orbs
-│   ├── shared/             # Reusable components
-│   └── ui/                 # Design system primitives
-├── lib/
-│   ├── context/            # React context providers
-│   ├── parsers/            # Grok JSON parser
-│   ├── storage/            # IndexedDB via Dexie
-│   ├── types/              # TypeScript interfaces
-│   ├── visualization/      # Graph layout, color scales
-│   └── workers/            # Web Worker analysis engine
-└── config/                 # Site configuration
-```
-
----
+Next.js 16 (static export), React 19, Tailwind CSS 4, Three.js with react-three-fiber, Recharts, Dexie, TypeScript, Biome, Vitest. Hosted as a Cloudflare Worker with static assets.
 
 ## Development
 
-```bash
-# Run development server with Turbopack
-npm run dev
+Requires Node.js 22 or newer (CI and Cloudflare builds use Node 26, see `.node-version`).
 
-# Run tests
+```sh
+npm install
+npm run dev          # http://localhost:3000
 npm test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Lint and format
 npm run lint
-npm run format
-
-# Type check
 npm run type-check
-
-# Build
-npm run build
-```
----
-
-## How It Works
-
-```
-┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
-│  Grok JSON   │────>│   Parser     │────>│   IndexedDB     │
-│  Export File  │     │  (Web Worker)│     │   (Dexie.js)    │
-└─────────────┘     └──────────────┘     └────────┬────────┘
-                                                   │
-                    ┌──────────────┐                │
-                    │  Analysis    │<───────────────┘
-                    │  (Web Worker)│
-                    └──────┬───────┘
-                           │
-          ┌────────────────┼────────────────┐
-          │                │                │
-    ┌─────┴─────┐   ┌─────┴─────┐   ┌─────┴─────┐
-    │  Topics   │   │ Sentiment │   │ Behavioral│
-    │  TF-IDF   │   │  Scoring  │   │ Profiling │
-    └─────┬─────┘   └─────┬─────┘   └─────┬─────┘
-          │                │                │
-          └────────────────┼────────────────┘
-                           │
-                    ┌──────┴───────┐
-                    │  3D Graph    │
-                    │  (Three.js)  │
-                    └──────────────┘
+npm run build        # static site in out/
 ```
 
-1. **Parse** — Your Grok JSON export is parsed in a Web Worker
-2. **Store** — Conversations and messages are stored in IndexedDB
-3. **Analyze** — A second Web Worker runs NLP analysis (topics, sentiment, behavioral, cognitive, memory extraction)
-4. **Visualize** — Results are rendered as an interactive 3D neural network using Three.js with force-directed layout
+`npm run preview` builds the site and serves it through the Worker with `wrangler dev` on http://localhost:8787, including the legal pages and the font proxy. Copy `.dev.vars.example` to `.dev.vars` first.
 
----
+## Self-hosting on Cloudflare
+
+The production build is a plain static site in `out/`. A small Worker (`worker/index.ts`) sits in front of it for three things:
+
+- `/privacy`, `/datenschutz`, `/imprint`, `/impressum`: the privacy policy and legal notice in English and German, rendered from the `LEGAL` secret. They return 404 while it is unset.
+- `/fonts/*`: Clash Display and General Sans, fetched from Fontshare by the Worker and served from your own origin, so visitors' browsers never contact a font CDN.
+- Security headers on those responses. Static files get the same headers from `public/_headers`.
+
+To deploy your own copy:
+
+1. Fork the repository and run `npx wrangler login`, or connect the repository in the Cloudflare dashboard (Workers & Pages, Create, Import a repository) with build command `npm run build` and deploy command `npx wrangler deploy`.
+2. Set the operator details for the legal pages as a secret. They stay out of the repository and survive redeploys.
+
+   ```sh
+   npx wrangler secret put LEGAL
+   ```
+
+   The value is JSON in this shape (`business`, `phone` and `vatId` are optional):
+
+   ```json
+   {
+     "name": "Jane Doe",
+     "business": "Example Studio",
+     "street": "Example Street 1",
+     "city": "12345 Example Town",
+     "country": { "en": "Germany", "de": "Deutschland" },
+     "email": "hello@example.com",
+     "authority": "Name and address of your data protection supervisory authority"
+   }
+   ```
+
+3. Attach a custom domain to the Worker (Settings, Domains & Routes). `wrangler.jsonc` deliberately has no routes, and `workers.dev` is off.
+4. Set `NEXT_PUBLIC_SITE_URL` at build time to your domain so canonical URLs, the sitemap and Open Graph tags point to it, and update `public/robots.txt`.
+
+The legal texts in `worker/legal.ts` were written for an operator in Germany. Check them against your own situation before you publish.
+
+## Design
+
+The UI follows the shiftbloom brandbook v2: white surfaces, Bloom Red `#FF2E52` for actions and the question-mark seed, Root Red `#C81040` for small red text and links, Clash Display for headlines, General Sans for UI and body, JetBrains Mono for labels and numbers. No gradients outside the logo mark. The 3D canvas sits on Ink `#1A1216`.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m "Add amazing feature"`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
+See [CONTRIBUTING.md](CONTRIBUTING.md). Security issues go through [SECURITY.md](SECURITY.md).
 
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+[AGPL-3.0-or-later](LICENSE). If you run a modified version for others, you have to offer them its source code. The footer of the app links to this repository for that reason.
 
----
-
-## Acknowledgments
-
-- [xAI](https://x.ai) for building Grok
-- [Three.js](https://threejs.org) for making 3D on the web possible
-- [Next.js](https://nextjs.org) for the best React framework
-- [Dexie.js](https://dexie.org) for making IndexedDB bearable
-
----
-
-<div align="center">
-
-Built with intensity by [shiftbloom studio](https://shiftbloom.studio)
-
-**If this tool gave you an oh-wow moment, star the repo and share it.**
-
-</div>
+Made by [shiftbloom studio](https://shiftbloom.studio).
