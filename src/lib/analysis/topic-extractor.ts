@@ -1,19 +1,20 @@
 import type { TopicCluster } from "@/lib/types/analysis";
 import { getCleanTokens } from "./text-utils";
 
+// Categorical palette led by the shiftbloom reds; readable on paper and on the ink canvas.
 const CLUSTER_COLORS = [
-  "#e63946",
-  "#457b9d",
-  "#2a9d8f",
-  "#e9c46a",
-  "#f4a261",
-  "#6366f1",
-  "#10b981",
-  "#f59e0b",
-  "#8b5cf6",
-  "#06b6d4",
-  "#ec4899",
-  "#84cc16",
+  "#ff2e52",
+  "#4fb3a9",
+  "#e8b04a",
+  "#7fa7d9",
+  "#ff8fab",
+  "#b48edc",
+  "#f07a3c",
+  "#9bc36b",
+  "#c81040",
+  "#5dc2e0",
+  "#d97bc1",
+  "#cfc4c0",
 ];
 
 interface TopicConfig {
@@ -47,7 +48,7 @@ export function computeTFIDF(documents: string[][]): Map<string, number[]> {
   const N = documents.length;
   const result = new Map<string, number[]>();
 
-  for (const [term, idx] of vocab) {
+  for (const [term, _idx] of vocab) {
     const df = docFreq.get(term) ?? 1;
     const idf = Math.log(1 + N / df);
     const scores = new Array<number>(N).fill(0);

@@ -1,7 +1,7 @@
 "use client";
 
-import type { ParsedConversation } from "@/lib/types/grok-data";
 import { useMemo, useState } from "react";
+import type { ParsedConversation } from "@/lib/types/grok-data";
 import { ConversationCard } from "./conversation-card";
 
 interface TimelineViewProps {
@@ -59,7 +59,7 @@ export function TimelineView({ conversations }: TimelineViewProps) {
           className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
             filter === "all"
               ? "bg-brand-primary text-white"
-              : "bg-white/70 text-brand-muted hover:text-brand-text"
+              : "bg-brand-panel text-brand-muted hover:text-brand-text"
           }`}
         >
           All ({conversations.length})
@@ -70,7 +70,7 @@ export function TimelineView({ conversations }: TimelineViewProps) {
           className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all cursor-pointer ${
             filter === "starred"
               ? "bg-brand-primary text-white"
-              : "bg-white/70 text-brand-muted hover:text-brand-text"
+              : "bg-brand-panel text-brand-muted hover:text-brand-text"
           }`}
         >
           Starred ({conversations.filter((c) => c.starred).length})
@@ -79,8 +79,8 @@ export function TimelineView({ conversations }: TimelineViewProps) {
 
       {groups.map((group) => (
         <div key={group.key}>
-          <div className="sticky top-0 z-10 bg-brand-bg/90 backdrop-blur-sm py-3 mb-3">
-            <h3 className="text-sm font-semibold text-brand-muted uppercase tracking-wider">
+          <div className="sticky top-0 z-10 bg-white/95 py-3 mb-3">
+            <h3 className="text-sm font-semibold text-brand-muted tracking-wider">
               {group.label}
               <span className="ml-2 text-xs font-normal">({group.conversations.length})</span>
             </h3>

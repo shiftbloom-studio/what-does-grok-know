@@ -6,43 +6,52 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
-    "lint": "biome check src/",
-    "lint:fix": "biome check --fix src/",
-    "format": "biome format --write src/",
+    "lint": "biome check src/ worker/ tests/",
+    "lint:fix": "biome check --write src/ worker/ tests/",
+    "format": "biome format --write src/ worker/ tests/",
     "test": "vitest run",
     "test:watch": "vitest",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit && tsc -p worker/tsconfig.json",
+    "preview": "next build && wrangler dev",
+    "deploy": "next build && wrangler deploy"
   },
   "dependencies": {
-    "@react-three/drei": "^10.0.0",
-    "@react-three/fiber": "^9.0.0",
-    "dexie": "^4.0.11",
-    "motion": "^12.0.0",
-    "next": "16.4.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "dexie": "^4.4.7",
+    "motion": "^12.43.0",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "recharts": "^2.15.0",
-    "three": "^0.173.0"
+    "three": "^0.187.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.0",
-    "@tailwindcss/postcss": "^4.0.0",
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.6.0",
-    "@testing-library/react": "^16.2.0",
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@types/three": "^0.173.0",
-    "@vitejs/plugin-react": "^4.3.0",
-    "jsdom": "^26.0.0",
-    "postcss": "^8.5.0",
-    "tailwindcss": "^4.0.0",
+    "@biomejs/biome": "^2.6.9",
+    "@cloudflare/workers-types": "^5.20261125.1",
+    "@tailwindcss/postcss": "^4.3.5",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^8.0.0",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^22.20.7",
+    "@types/react": "^19.3.3",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.187.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "jsdom": "^31.0.1",
+    "postcss": "^8.5.33",
+    "tailwindcss": "^4.3.5",
     "typescript": "^5.7.0",
-    "vitest": "^3.2.6"
+    "vitest": "^5.1.2",
+    "wrangler": "^4.168.0"
   },
-  "overrides": {
-    "tinypool": "2.1.2"
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shiftbloom-studio/what-does-grok-know"
+  },
+  "engines": {
+    "node": ">=20.9"
   }
 }

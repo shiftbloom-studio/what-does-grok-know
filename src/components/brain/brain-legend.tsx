@@ -12,7 +12,7 @@ interface BrainLegendProps {
 function TopicLegend({ clusters }: { clusters: TopicCluster[] }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-white/40 text-[10px] uppercase tracking-wider font-semibold">
+      <span className="text-white/40 text-[10px] font-mono lowercase tracking-[0.16em]">
         Topics
       </span>
       {clusters.map((cluster) => (
@@ -49,7 +49,7 @@ function GradientLegend({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="text-white/40 text-[10px] uppercase tracking-wider font-semibold">
+      <span className="text-white/40 text-[10px] font-mono lowercase tracking-[0.16em]">
         {label}
       </span>
       <div className="h-2 rounded-full w-full" style={{ background: gradient }} />
@@ -63,15 +63,15 @@ function GradientLegend({
 
 export function BrainLegend({ colorMode, clusters, dateRange }: BrainLegendProps) {
   return (
-    <div className="absolute top-6 right-6 z-10 p-4 rounded-xl bg-black/50 backdrop-blur-xl border border-white/15 shadow-xl min-w-[170px]">
+    <div className="absolute top-6 right-6 z-10 p-4 rounded-xl bg-brand-deep/80 backdrop-blur-md border border-white/10 shadow-xl min-w-[170px]">
       {colorMode === "topic" && <TopicLegend clusters={clusters} />}
 
       {colorMode === "sentiment" && (
         <GradientLegend
           label="Sentiment"
-          startColor="#e63946"
-          midColor="#f4d03f"
-          endColor="#10b981"
+          startColor="#ff2e52"
+          midColor="#cfc4c0"
+          endColor="#4fb3a9"
           startLabel="Negative"
           endLabel="Positive"
         />
@@ -80,8 +80,8 @@ export function BrainLegend({ colorMode, clusters, dateRange }: BrainLegendProps
       {colorMode === "time" && (
         <GradientLegend
           label="Timeline"
-          startColor="#6366f1"
-          endColor="#e63946"
+          startColor="#8a7a82"
+          endColor="#ff2e52"
           startLabel={dateRange?.start ?? "Earliest"}
           endLabel={dateRange?.end ?? "Latest"}
         />
@@ -89,7 +89,7 @@ export function BrainLegend({ colorMode, clusters, dateRange }: BrainLegendProps
 
       {colorMode === "model" && (
         <div className="flex flex-col gap-1.5">
-          <span className="text-white/40 text-[10px] uppercase tracking-wider font-semibold">
+          <span className="text-white/40 text-[10px] font-mono lowercase tracking-[0.16em]">
             Model
           </span>
           <span className="text-white/50 text-[10px]">Colored by topic cluster</span>
@@ -99,8 +99,8 @@ export function BrainLegend({ colorMode, clusters, dateRange }: BrainLegendProps
       {colorMode === "activity" && (
         <GradientLegend
           label="Activity"
-          startColor="#c4b5fd"
-          endColor="#e63946"
+          startColor="#ffdce7"
+          endColor="#ff2e52"
           startLabel="Low"
           endLabel="High"
         />

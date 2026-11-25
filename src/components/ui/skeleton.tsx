@@ -5,5 +5,5 @@ interface SkeletonProps {
 }
 
 export function Skeleton({ className }: SkeletonProps) {
-  return <div className={cn("bg-gray-200 rounded animate-pulse", className)} />;
+  return <div className={cn("bg-brand-border rounded animate-pulse", className)} />;
 }

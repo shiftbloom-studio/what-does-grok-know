@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef } from "react";
 
 type MessageHandler<T> = (data: T) => void;
 
-interface UseWorkerResult<TIn, TOut> {
+interface UseWorkerResult<TIn, _TOut> {
   postMessage: (data: TIn) => void;
   terminate: () => void;
   isReady: boolean;

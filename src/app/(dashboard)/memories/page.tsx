@@ -10,9 +10,9 @@ export default function MemoriesPage() {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="text-2xl font-bold text-brand-text mb-1">Memories</h1>
+        <h1 className="mb-1 text-3xl font-semibold text-brand-text">Memories</h1>
         <p className="text-sm text-brand-muted">
-          Facts, decisions, and learnings extracted from your conversations
+          Things you told Grok about yourself, plus the decisions and lessons it picked up.
         </p>
       </div>
 

@@ -1,43 +1,56 @@
 import Link from "next/link";
+import { StudioWordmark } from "@/components/brand/wordmark";
+import { siteConfig } from "@/config/site";
 
-const footerLinks = [
-  { href: "/how-to", label: "How to Get Your Data" },
+const appLinks = [
+  { href: "/how-to", label: "Get your export" },
   { href: "/faq", label: "FAQ" },
-  { href: "/privacy-info", label: "Privacy Verification" },
-  { href: "/privacy", label: "Datenschutz" },
+  { href: "/privacy-info", label: "Check it yourself" },
+];
+
+// Served by the Cloudflare Worker from deploy config, so they are plain links, not Next routes.
+const legalLinks = [
+  { href: "/privacy", label: "Privacy" },
+  { href: "/datenschutz", label: "Datenschutz" },
+  { href: "/imprint", label: "Imprint" },
   { href: "/impressum", label: "Impressum" },
 ];
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-brand-border/50 mt-auto">
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-4">
-          {footerLinks.map((link) => (
+    <footer className="mt-auto w-full border-t border-brand-border">
+      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-5 py-8 text-sm md:flex-row md:items-start md:justify-between">
+        <div className="space-y-2">
+          <a href={siteConfig.creatorUrl} target="_blank" rel="noopener noreferrer">
+            <StudioWordmark className="text-base" />
+          </a>
+          <p className="max-w-xs text-brand-muted">
+            Your export is read by this browser tab. No server ever sees it.
+          </p>
+        </div>
+        <nav aria-label="Help" className="flex flex-col gap-1.5">
+          <span className="label pb-1">help</span>
+          {appLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-brand-muted hover:text-brand-primary transition-colors"
+              className="text-brand-muted hover:text-brand-text"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="text-center text-xs text-brand-muted/60">
-          <p>
-            &copy; {new Date().getFullYear()}{" "}
-            <a
-              href="https://shiftbloom.studio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-brand-primary transition-colors"
-            >
-              shiftbloom studio
+        <nav aria-label="Legal" className="flex flex-col gap-1.5">
+          <span className="label pb-1">legal</span>
+          {legalLinks.map((link) => (
+            <a key={link.href} href={link.href} className="text-brand-muted hover:text-brand-text">
+              {link.label}
             </a>
-            . All rights reserved.
-          </p>
-          <p className="mt-1">100% client-side &mdash; your data never leaves your browser.</p>
-        </div>
+          ))}
+          <a href={siteConfig.github} className="text-brand-muted hover:text-brand-text">
+            Source code (AGPL-3.0)
+          </a>
+        </nav>
       </div>
     </footer>
   );

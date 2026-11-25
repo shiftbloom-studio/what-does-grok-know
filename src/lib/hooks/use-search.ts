@@ -1,9 +1,9 @@
 "use client";
 
+import { useCallback, useEffect, useRef, useState } from "react";
 import { analysisConfig } from "@/lib/constants/analysis-config";
 import { getAllMessages } from "@/lib/storage/db-queries";
 import type { SearchResult } from "@/lib/workers/search-worker";
-import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useSearch() {
   const [query, setQuery] = useState("");

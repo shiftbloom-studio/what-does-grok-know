@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils/format-utils";
 import type { InputHTMLAttributes } from "react";
+import { cn } from "@/lib/utils/format-utils";
 
 interface SearchInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type"> {
   className?: string;

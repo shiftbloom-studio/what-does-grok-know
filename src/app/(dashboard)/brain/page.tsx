@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { BrainControls } from "@/components/brain/brain-controls";
 import { BrainLegend } from "@/components/brain/brain-legend";
 import BrainScene from "@/components/brain/brain-scene";
@@ -10,7 +12,6 @@ import { getAllConversations } from "@/lib/storage/db-queries";
 import type { ParsedConversation } from "@/lib/types/grok-data";
 import type { BrainGraph, ColorMode } from "@/lib/types/visualization";
 import { buildBrainGraph } from "@/lib/visualization/cluster-builder";
-import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface HoveredNode {
   id: string;
@@ -20,6 +21,7 @@ interface HoveredNode {
 }
 
 export default function BrainPage() {
+  const router = useRouter();
   const { analysis, isAnalyzing, progress } = useAnalysisContext();
   const [conversations, setConversations] = useState<ParsedConversation[]>([]);
   const [colorMode, setColorMode] = useState<ColorMode>("topic");
@@ -58,9 +60,12 @@ export default function BrainPage() {
     return map;
   }, [graph.nodes]);
 
-  const handleNodeClick = useCallback((conversationId: string) => {
-    window.location.href = `/conversation/${conversationId}`;
-  }, []);
+  const handleNodeClick = useCallback(
+    (conversationId: string) => {
+      router.push(`/conversation?id=${encodeURIComponent(conversationId)}`);
+    },
+    [router],
+  );
 
   const handleNodeHover = useCallback(
     (data: { id: string; title: string; x: number; y: number } | null) => {
@@ -73,7 +78,7 @@ export default function BrainPage() {
     return (
       <div className="h-[calc(100vh-5rem)] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 animate-pulse" />
+          <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-brand-secondary animate-breathe" />
           <p className="text-brand-muted text-sm">Loading conversations...</p>
         </div>
       </div>
@@ -97,7 +102,7 @@ export default function BrainPage() {
     return (
       <div className="h-[calc(100vh-5rem)] flex items-center justify-center">
         <div className="text-center w-full max-w-sm space-y-4">
-          <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 animate-pulse" />
+          <div className="w-20 h-20 mx-auto rounded-full bg-brand-secondary animate-breathe" />
           <div>
             <p className="text-brand-text font-medium">Building neural network...</p>
             <p className="text-sm text-brand-muted mt-1">{progress.message}</p>
@@ -136,8 +141,8 @@ export default function BrainPage() {
       )}
 
       <div className="absolute top-4 left-4 z-10">
-        <h1 className="text-white text-sm font-semibold tracking-wide">Neural Network</h1>
-        <p className="text-white/40 text-[11px]">
+        <h1 className="font-display text-lg font-medium text-white">Your brain</h1>
+        <p className="font-mono text-[11px] tracking-[0.08em] text-white/50">
           {graph.nodes.length} conversations / {graph.edges.length} connections
         </p>
       </div>

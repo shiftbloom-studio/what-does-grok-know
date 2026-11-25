@@ -1,60 +1,55 @@
 "use client";
 
-import { cn } from "@/lib/utils/format-utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-interface NavItem {
-  href: string;
-  label: string;
-  icon: string;
-}
-
-const navItems: NavItem[] = [
-  { href: "/brain", label: "Brain", icon: "\u{1F9E0}" },
-  { href: "/timeline", label: "Timeline", icon: "\u{1F4C5}" },
-  { href: "/topics", label: "Topics", icon: "\u{1F4A1}" },
-  { href: "/insights", label: "Insights", icon: "\u{1F4CA}" },
-  { href: "/memories", label: "Memories", icon: "\u{1F516}" },
-  { href: "/search", label: "Search", icon: "\u{1F50D}" },
-];
+import { StudioWordmark, Wordmark } from "@/components/brand/wordmark";
+import { cn } from "@/lib/utils/format-utils";
+import { navItems } from "./nav-items";
 
 export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 bottom-0 w-64 glass-brand border-r border-brand-primary/15 hidden md:flex flex-col z-40">
-      <div className="p-4">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl">{"\u{1F9E0}"}</span>
-          <span className="font-bold text-brand-text gradient-text text-lg">GrokBrain</span>
+    <aside className="fixed bottom-0 left-0 top-0 z-40 hidden w-64 flex-col border-r border-brand-border bg-brand-panel md:flex">
+      <div className="px-5 pb-6 pt-5">
+        <Link href="/" className="text-xl leading-tight">
+          <Wordmark />
         </Link>
       </div>
 
-      <nav className="flex-1 px-3 space-y-1">
+      <p className="label px-5 pb-2">explore</p>
+      <nav className="flex-1 space-y-0.5 px-3">
         {navItems.map((item) => {
           const active = pathname.startsWith(item.href);
           return (
             <Link
               key={item.href}
               href={item.href}
+              aria-current={active ? "page" : undefined}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-[15px] transition-colors duration-200",
                 active
-                  ? "bg-gradient-to-r from-brand-primary/15 to-brand-accent/5 text-brand-primary border border-brand-primary/15"
-                  : "text-brand-muted hover:bg-white/40 hover:text-brand-text",
+                  ? "bg-white font-medium text-brand-text"
+                  : "text-brand-muted hover:bg-white hover:text-brand-text",
               )}
             >
-              <span className="text-lg">{item.icon}</span>
+              <span
+                className={cn(
+                  "seed transition-transform duration-[240ms]",
+                  active ? "scale-100" : "scale-0",
+                )}
+                style={{ transitionTimingFunction: "var(--ease-bloom)" }}
+              />
               {item.label}
             </Link>
           );
         })}
       </nav>
 
-      <div className="p-4 border-t border-brand-primary/15">
-        <p className="text-xs text-brand-muted text-center font-medium">What Does Grok Know?</p>
-        <div className="w-full h-px bg-gradient-to-r from-brand-primary/0 via-brand-primary/30 to-brand-primary/0 mt-2" />
+      <div className="border-t border-brand-border px-5 py-4 text-sm">
+        <a href="https://shiftbloom.studio" target="_blank" rel="noopener noreferrer">
+          <StudioWordmark />
+        </a>
       </div>
     </aside>
   );

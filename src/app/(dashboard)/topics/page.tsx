@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { AnalysisGate } from "@/components/shared/analysis-gate";
 import { TopicClusters } from "@/components/topics/topic-clusters";
 import { TopicList } from "@/components/topics/topic-list";
@@ -7,7 +8,6 @@ import { useAnalysisContext } from "@/lib/context/analysis-provider";
 import { getAllConversations } from "@/lib/storage/db-queries";
 import type { TopicCluster } from "@/lib/types/analysis";
 import type { ParsedConversation } from "@/lib/types/grok-data";
-import { useEffect, useState } from "react";
 
 export default function TopicsPage() {
   const { analysis } = useAnalysisContext();
@@ -25,8 +25,10 @@ export default function TopicsPage() {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold text-brand-text mb-1">Topics</h1>
-        <p className="text-sm text-brand-muted">Explore the themes in your conversations</p>
+        <h1 className="mb-1 text-3xl font-semibold text-brand-text">Topics</h1>
+        <p className="text-sm text-brand-muted">
+          What you keep coming back to, grouped by the words those chats share.
+        </p>
       </div>
 
       <AnalysisGate>

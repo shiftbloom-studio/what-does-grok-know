@@ -49,7 +49,7 @@ export function ParticleField() {
   return (
     <points ref={pointsRef} geometry={geometry}>
       <pointsMaterial
-        color="#6366f1"
+        color="#ff8fab"
         size={0.2}
         transparent
         opacity={0.5}

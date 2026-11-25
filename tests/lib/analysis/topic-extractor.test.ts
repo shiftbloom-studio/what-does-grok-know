@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import { tokenize, getCleanTokens } from "@/lib/analysis/text-utils";
-import { computeTFIDF, kMeansCluster, extractTopics } from "@/lib/analysis/topic-extractor";
+import { describe, expect, it } from "vitest";
+import { getCleanTokens, tokenize } from "@/lib/analysis/text-utils";
+import { computeTFIDF, extractTopics, kMeansCluster } from "@/lib/analysis/topic-extractor";
 
 describe("tokenize", () => {
   it("lowercases and splits text into words", () => {
@@ -88,7 +88,10 @@ describe("kMeansCluster", () => {
   });
 
   it("assigns sequential indices when n <= k", () => {
-    const vectors = [[1, 0], [0, 1]];
+    const vectors = [
+      [1, 0],
+      [0, 1],
+    ];
     const result = kMeansCluster(vectors, 5);
     expect(result).toEqual([0, 1]);
   });
@@ -123,9 +126,10 @@ describe("extractTopics", () => {
   it("extracts topic clusters from conversations", () => {
     const conversations = Array.from({ length: 10 }, (_, i) => ({
       id: String(i),
-      text: i < 5
-        ? "javascript typescript react frontend development component"
-        : "python machine learning data science neural network model",
+      text:
+        i < 5
+          ? "javascript typescript react frontend development component"
+          : "python machine learning data science neural network model",
       language: "en" as const,
     }));
 

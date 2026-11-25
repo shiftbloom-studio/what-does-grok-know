@@ -1,7 +1,7 @@
 "use client";
 
-import { cn } from "@/lib/utils/format-utils";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { cn } from "@/lib/utils/format-utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
@@ -14,9 +14,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-gradient-to-br from-brand-primary to-brand-primary/80 text-white rounded-full hover:shadow-lg hover:shadow-brand-primary/25 active:scale-[0.97] shadow-md border border-brand-primary/40",
+    "bg-brand-primary text-white rounded-full hover:bg-brand-root active:scale-[0.97] border border-transparent",
   secondary:
-    "bg-white/80 backdrop-blur-sm border border-brand-border text-brand-text rounded-full hover:bg-white hover:border-brand-primary/20 active:scale-[0.97]",
+    "bg-white border border-brand-border text-brand-text rounded-full hover:border-brand-text active:scale-[0.97]",
   ghost:
     "bg-transparent text-brand-text rounded-full hover:bg-brand-primary/8 active:scale-[0.97] border border-transparent hover:border-brand-primary/15",
 };

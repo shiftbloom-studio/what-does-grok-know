@@ -6,11 +6,7 @@ import { Sidebar } from "@/components/layout/sidebar";
 import { DemoBanner } from "@/components/shared/demo-banner";
 import { AnalysisProvider } from "@/lib/context/analysis-provider";
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <AnalysisProvider>
       <div className="flex min-h-screen">

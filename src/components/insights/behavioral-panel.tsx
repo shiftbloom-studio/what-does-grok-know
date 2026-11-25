@@ -1,8 +1,5 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import { getModelColor, getModelLabel } from "@/lib/constants/models";
-import type { BehavioralProfile } from "@/lib/types/analysis";
 import {
   Bar,
   BarChart,
@@ -14,6 +11,9 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { Card } from "@/components/ui/card";
+import { getModelColor, getModelLabel } from "@/lib/constants/models";
+import type { BehavioralProfile } from "@/lib/types/analysis";
 
 interface BehavioralPanelProps {
   profile: BehavioralProfile;
@@ -44,7 +44,7 @@ export function BehavioralPanel({ profile }: BehavioralPanelProps) {
   return (
     <div className="space-y-6">
       <Card>
-        <h4 className="text-sm font-semibold text-brand-text mb-4">Hourly Activity</h4>
+        <h4 className="text-sm font-semibold text-brand-text mb-4">Hourly activity</h4>
         <div className="h-48">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={hourlyData}>
@@ -52,7 +52,7 @@ export function BehavioralPanel({ profile }: BehavioralPanelProps) {
               <YAxis hide />
               <Tooltip
                 contentStyle={{
-                  background: "#1a1a1a",
+                  background: "#1a1216",
                   border: "none",
                   borderRadius: "8px",
                   color: "#fff",
@@ -60,7 +60,7 @@ export function BehavioralPanel({ profile }: BehavioralPanelProps) {
                 }}
                 labelFormatter={(v) => `${v}:00`}
               />
-              <Bar dataKey="count" fill="#e63946" radius={[4, 4, 0, 0]} maxBarSize={16} />
+              <Bar dataKey="count" fill="#ff2e52" radius={[4, 4, 0, 0]} maxBarSize={16} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -68,7 +68,7 @@ export function BehavioralPanel({ profile }: BehavioralPanelProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
-          <h4 className="text-sm font-semibold text-brand-text mb-4">Daily Activity</h4>
+          <h4 className="text-sm font-semibold text-brand-text mb-4">Daily activity</h4>
           <div className="h-48">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={dailyData}>
@@ -76,21 +76,21 @@ export function BehavioralPanel({ profile }: BehavioralPanelProps) {
                 <YAxis hide />
                 <Tooltip
                   contentStyle={{
-                    background: "#1a1a1a",
+                    background: "#1a1216",
                     border: "none",
                     borderRadius: "8px",
                     color: "#fff",
                     fontSize: "12px",
                   }}
                 />
-                <Bar dataKey="count" fill="#6366f1" radius={[4, 4, 0, 0]} maxBarSize={32} />
+                <Bar dataKey="count" fill="#c81040" radius={[4, 4, 0, 0]} maxBarSize={32} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </Card>
 
         <Card>
-          <h4 className="text-sm font-semibold text-brand-text mb-4">Model Usage</h4>
+          <h4 className="text-sm font-semibold text-brand-text mb-4">Model usage</h4>
           {modelData.length > 0 ? (
             <div className="flex items-center gap-4">
               <div className="h-48 w-48">
@@ -111,7 +111,7 @@ export function BehavioralPanel({ profile }: BehavioralPanelProps) {
                     </Pie>
                     <Tooltip
                       contentStyle={{
-                        background: "#1a1a1a",
+                        background: "#1a1216",
                         border: "none",
                         borderRadius: "8px",
                         color: "#fff",
@@ -142,7 +142,7 @@ export function BehavioralPanel({ profile }: BehavioralPanelProps) {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="text-center">
-          <p className="text-2xl font-bold text-brand-primary">
+          <p className="text-2xl font-bold text-brand-root">
             {profile.avgMessagesPerConversation.toFixed(1)}
           </p>
           <p className="text-xs text-brand-muted mt-1">Avg Messages/Chat</p>
@@ -154,16 +154,16 @@ export function BehavioralPanel({ profile }: BehavioralPanelProps) {
           <p className="text-xs text-brand-muted mt-1">Avg Session (min)</p>
         </Card>
         <Card className="text-center">
-          <p className="text-2xl font-bold text-brand-primary">
+          <p className="text-2xl font-bold text-brand-root">
             {(profile.toolUsageRate * 100).toFixed(1)}%
           </p>
-          <p className="text-xs text-brand-muted mt-1">Tool Usage</p>
+          <p className="text-xs text-brand-muted mt-1">Tool usage</p>
         </Card>
         <Card className="text-center">
           <p className="text-2xl font-bold text-brand-accent">
             {(profile.thinkingTraceRate * 100).toFixed(1)}%
           </p>
-          <p className="text-xs text-brand-muted mt-1">Thinking Traces</p>
+          <p className="text-xs text-brand-muted mt-1">Thinking traces</p>
         </Card>
       </div>
     </div>

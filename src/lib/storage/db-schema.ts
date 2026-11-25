@@ -1,5 +1,5 @@
 import Dexie, { type Table } from "dexie";
-import type { AnalysisResult, Memory, TopicCluster } from "../types/analysis";
+import type { Memory, TopicCluster } from "../types/analysis";
 import type { ParsedConversation, ParsedMessage } from "../types/grok-data";
 
 export class GrokDatabase extends Dexie {

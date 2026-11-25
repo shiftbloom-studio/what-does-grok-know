@@ -572,4 +572,4 @@ export function getCleanTokens(text: string, language: "en" | "de" | "mixed"): s
   return words.filter((w) => !stopwords.has(w) && w.length > 2).map((w) => stemFn(w));
 }
 
-export { EN_STOPWORDS, DE_STOPWORDS };
+export { DE_STOPWORDS, EN_STOPWORDS };

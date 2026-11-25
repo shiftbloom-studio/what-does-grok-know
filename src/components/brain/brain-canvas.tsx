@@ -1,8 +1,8 @@
 "use client";
 
-import type { BrainGraph, ColorMode } from "@/lib/types/visualization";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import type { BrainGraph, ColorMode } from "@/lib/types/visualization";
 import { EdgeConnections } from "./edge-connections";
 import { NeuralNetwork } from "./neural-network";
 import { ParticleField } from "./particle-field";
@@ -23,13 +23,14 @@ export default function BrainCanvas({
   return (
     <Canvas
       camera={{ position: [0, 0, 80], fov: 60 }}
-      style={{ background: "#111128" }}
+      style={{ background: "#1a1216" }}
       gl={{ antialias: true, alpha: false }}
     >
+      <color attach="background" args={["#1a1216"]} />
       <ambientLight intensity={1.5} />
       <pointLight position={[100, 100, 100]} intensity={1.0} />
-      <pointLight position={[-50, -50, 50]} intensity={0.8} color="#6366f1" />
-      <pointLight position={[0, -80, -40]} intensity={0.5} color="#e63946" />
+      <pointLight position={[-50, -50, 50]} intensity={0.8} color="#ff8fab" />
+      <pointLight position={[0, -80, -40]} intensity={0.5} color="#ff2e52" />
 
       <NeuralNetwork
         nodes={graph.nodes}

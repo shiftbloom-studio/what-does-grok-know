@@ -1,7 +1,5 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import type { ConversationSentiment } from "@/lib/types/analysis";
 import { useMemo } from "react";
 import {
   Line,
@@ -12,6 +10,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { Card } from "@/components/ui/card";
+import type { ConversationSentiment } from "@/lib/types/analysis";
 
 interface EmotionalPanelProps {
   sentiments: ConversationSentiment[];
@@ -20,17 +20,17 @@ interface EmotionalPanelProps {
 }
 
 function getSentimentLabel(score: number): string {
-  if (score >= 0.5) return "Very Positive";
+  if (score >= 0.5) return "Very positive";
   if (score >= 0.15) return "Positive";
   if (score > -0.15) return "Neutral";
   if (score > -0.5) return "Negative";
-  return "Very Negative";
+  return "Very negative";
 }
 
 function getSentimentColor(score: number): string {
-  if (score >= 0.15) return "text-green-600";
-  if (score > -0.15) return "text-yellow-600";
-  return "text-red-500";
+  if (score >= 0.15) return "text-brand-root";
+  if (score > -0.15) return "text-brand-muted";
+  return "text-brand-root";
 }
 
 export function EmotionalPanel({
@@ -67,21 +67,21 @@ export function EmotionalPanel({
           </p>
         </Card>
         <Card className="text-center">
-          <p className="text-2xl font-bold text-green-600">{positiveCount}</p>
-          <p className="text-xs text-brand-muted mt-1">Positive Chats</p>
+          <p className="text-2xl font-bold text-brand-root">{positiveCount}</p>
+          <p className="text-xs text-brand-muted mt-1">Positive chats</p>
         </Card>
         <Card className="text-center">
-          <p className="text-2xl font-bold text-yellow-600">{neutralCount}</p>
-          <p className="text-xs text-brand-muted mt-1">Neutral Chats</p>
+          <p className="text-2xl font-bold text-brand-muted">{neutralCount}</p>
+          <p className="text-xs text-brand-muted mt-1">Neutral chats</p>
         </Card>
         <Card className="text-center">
-          <p className="text-2xl font-bold text-red-500">{negativeCount}</p>
-          <p className="text-xs text-brand-muted mt-1">Negative Chats</p>
+          <p className="text-2xl font-bold text-brand-root">{negativeCount}</p>
+          <p className="text-xs text-brand-muted mt-1">Negative chats</p>
         </Card>
       </div>
 
       <Card>
-        <h4 className="text-sm font-semibold text-brand-text mb-4">Sentiment Over Time</h4>
+        <h4 className="text-sm font-semibold text-brand-text mb-4">Sentiment over time</h4>
         {chartData.length > 0 ? (
           <div className="h-56">
             <ResponsiveContainer width="100%" height="100%">
@@ -101,7 +101,7 @@ export function EmotionalPanel({
                 <YAxis domain={[-1, 1]} tick={{ fontSize: 10 }} tickLine={false} axisLine={false} />
                 <Tooltip
                   contentStyle={{
-                    background: "#1a1a1a",
+                    background: "#1a1216",
                     border: "none",
                     borderRadius: "8px",
                     color: "#fff",
@@ -109,14 +109,14 @@ export function EmotionalPanel({
                   }}
                   formatter={(value: number) => [value.toFixed(3), "Sentiment"]}
                 />
-                <ReferenceLine y={0} stroke="#9ca3af" strokeDasharray="3 3" />
+                <ReferenceLine y={0} stroke="#cfc4c0" strokeDasharray="3 3" />
                 <Line
                   type="monotone"
                   dataKey="score"
-                  stroke="#e63946"
+                  stroke="#ff2e52"
                   strokeWidth={2}
                   dot={false}
-                  activeDot={{ r: 4, fill: "#e63946" }}
+                  activeDot={{ r: 4, fill: "#ff2e52" }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -128,13 +128,13 @@ export function EmotionalPanel({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
-          <h4 className="text-sm font-semibold text-green-600 mb-3">Positive Signals</h4>
+          <h4 className="text-sm font-semibold text-brand-root mb-3">Positive signals</h4>
           {positiveWords.length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {positiveWords.slice(0, 30).map((word) => (
                 <span
                   key={word}
-                  className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-green-50 text-green-700"
+                  className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-brand-panel text-brand-text"
                 >
                   {word}
                 </span>
@@ -145,13 +145,13 @@ export function EmotionalPanel({
           )}
         </Card>
         <Card>
-          <h4 className="text-sm font-semibold text-red-500 mb-3">Negative Signals</h4>
+          <h4 className="text-sm font-semibold text-brand-root mb-3">Negative signals</h4>
           {negativeWords.length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {negativeWords.slice(0, 30).map((word) => (
                 <span
                   key={word}
-                  className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-red-50 text-red-600"
+                  className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium bg-brand-secondary text-brand-root"
                 >
                   {word}
                 </span>

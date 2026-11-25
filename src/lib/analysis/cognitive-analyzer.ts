@@ -1,5 +1,4 @@
-import type { CognitiveProfile } from "@/lib/types/analysis";
-import type { TopicCluster } from "@/lib/types/analysis";
+import type { CognitiveProfile, TopicCluster } from "@/lib/types/analysis";
 import type { ParsedMessage } from "@/lib/types/grok-data";
 import { tokenize } from "./text-utils";
 

@@ -1,7 +1,7 @@
 "use client";
 
-import type { Memory } from "@/lib/types/analysis";
 import { useMemo, useState } from "react";
+import type { Memory } from "@/lib/types/analysis";
 import { MemoryCard } from "./memory-card";
 
 interface MemoryListProps {
@@ -47,7 +47,7 @@ export function MemoryList({ memories }: MemoryListProps) {
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                 typeFilter === filter.id
                   ? "bg-brand-primary text-white"
-                  : "bg-white/70 text-brand-muted hover:text-brand-text"
+                  : "bg-brand-panel text-brand-muted hover:text-brand-text"
               }`}
             >
               {filter.label}
@@ -60,8 +60,8 @@ export function MemoryList({ memories }: MemoryListProps) {
             onClick={() => setSortBy("confidence")}
             className={`px-3 py-1 rounded-full text-xs font-medium transition-all cursor-pointer ${
               sortBy === "confidence"
-                ? "bg-brand-accent text-white"
-                : "bg-gray-100 text-brand-muted"
+                ? "bg-brand-text text-white"
+                : "bg-brand-panel text-brand-muted"
             }`}
           >
             By Confidence
@@ -70,7 +70,7 @@ export function MemoryList({ memories }: MemoryListProps) {
             type="button"
             onClick={() => setSortBy("date")}
             className={`px-3 py-1 rounded-full text-xs font-medium transition-all cursor-pointer ${
-              sortBy === "date" ? "bg-brand-accent text-white" : "bg-gray-100 text-brand-muted"
+              sortBy === "date" ? "bg-brand-text text-white" : "bg-brand-panel text-brand-muted"
             }`}
           >
             By Date

@@ -1,11 +1,11 @@
 "use client";
 
-import type { TopicCluster } from "@/lib/types/analysis";
-import type { BrainNode, ColorMode } from "@/lib/types/visualization";
-import { type ColorContext, getNodeColor } from "@/lib/visualization/color-scales";
 import { type ThreeEvent, useFrame } from "@react-three/fiber";
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import type { TopicCluster } from "@/lib/types/analysis";
+import type { BrainNode, ColorMode } from "@/lib/types/visualization";
+import { type ColorContext, getNodeColor } from "@/lib/visualization/color-scales";
 
 interface NeuralNetworkProps {
   nodes: BrainNode[];
@@ -141,8 +141,8 @@ export function NeuralNetwork({
       <meshStandardMaterial
         roughness={0.3}
         metalness={0.1}
-        emissive="#4040ff"
-        emissiveIntensity={0.4}
+        emissive="#ffffff"
+        emissiveIntensity={0.08}
       />
     </instancedMesh>
   );

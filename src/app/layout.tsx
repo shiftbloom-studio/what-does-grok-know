@@ -1,12 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import "@fontsource/jetbrains-mono/latin-400.css";
+import "@fontsource/jetbrains-mono/latin-500.css";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
 export const viewport: Viewport = {
-  themeColor: "#e63946",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "What Does Grok Know? — 3D Neural Network Visualization of Your Grok Conversations",
+        alt: "what does grok know? A 3D map of Grok conversations",
       },
     ],
   },
@@ -42,7 +41,6 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: "@shiftbloom",
   },
   robots: {
     index: true,
@@ -64,9 +62,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* Clash Display and General Sans, proxied by the Worker so the browser never talks to Fontshare. */}
+        <link rel="stylesheet" href="/fonts/brand.css" />
         <script
           type="application/ld+json"
           // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD structured data

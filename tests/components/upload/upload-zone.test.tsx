@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { UploadZone } from "@/components/upload/upload-zone";
 
 describe("UploadZone", () => {
@@ -7,8 +7,8 @@ describe("UploadZone", () => {
     const onFileLoaded = vi.fn();
     render(<UploadZone onFileLoaded={onFileLoaded} />);
 
-    expect(screen.getByText(/drop your grok-chats.json here/i)).toBeInTheDocument();
-    expect(screen.getByText(/or click to browse/i)).toBeInTheDocument();
+    expect(screen.getByText(/drop your grok export here/i)).toBeInTheDocument();
+    expect(screen.getByText(/up to 200 MB/i)).toBeInTheDocument();
   });
 
   it("has a hidden file input that accepts .json", () => {

@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ConversationViewer } from "@/components/shared/conversation-viewer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,13 +11,11 @@ import { getConversation, getMessages } from "@/lib/storage/db-queries";
 import type { ParsedConversation, ParsedMessage } from "@/lib/types/grok-data";
 import { formatDate } from "@/lib/utils/date-utils";
 import { formatNumber } from "@/lib/utils/format-utils";
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
-export default function ConversationDetailPage() {
-  const params = useParams();
+export function ConversationDetail() {
+  const params = useSearchParams();
   const router = useRouter();
-  const id = params.id as string;
+  const id = params.get("id") ?? "";
 
   const [conversation, setConversation] = useState<ParsedConversation | null>(null);
   const [messages, setMessages] = useState<ParsedMessage[]>([]);
@@ -65,7 +65,7 @@ export default function ConversationDetailPage() {
         <button
           type="button"
           onClick={() => router.push("/timeline")}
-          className="inline-flex items-center gap-1 text-sm text-brand-muted hover:text-brand-primary transition-colors mb-4 cursor-pointer"
+          className="inline-flex items-center gap-1 text-sm text-brand-muted hover:text-brand-root transition-colors mb-4 cursor-pointer"
         >
           <svg
             className="w-4 h-4"
@@ -86,7 +86,7 @@ export default function ConversationDetailPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-xl font-bold text-brand-text mb-1">
-              {conversation.starred && <span className="text-yellow-500 mr-2">&#9733;</span>}
+              {conversation.starred && <span className="text-brand-primary mr-2">&#9733;</span>}
               {conversation.title || "Untitled conversation"}
             </h1>
             <p className="text-sm text-brand-muted">
@@ -120,7 +120,7 @@ export default function ConversationDetailPage() {
         )}
       </div>
 
-      <div className="bg-white/50 backdrop-blur-sm border border-white/30 rounded-2xl p-4">
+      <div className="bg-brand-panel border border-brand-border rounded-2xl p-4">
         <ConversationViewer messages={messages} />
       </div>
     </div>

@@ -1,8 +1,8 @@
 "use client";
 
-import type { BrainEdge, BrainNode } from "@/lib/types/visualization";
 import { useMemo } from "react";
 import * as THREE from "three";
+import type { BrainEdge, BrainNode } from "@/lib/types/visualization";
 
 interface EdgeConnectionsProps {
   edges: BrainEdge[];
