@@ -107,7 +107,10 @@ export function EmotionalPanel({
                     color: "#fff",
                     fontSize: "12px",
                   }}
-                  formatter={(value: number) => [value.toFixed(3), "Sentiment"]}
+                  formatter={(value) => [
+                    typeof value === "number" ? value.toFixed(3) : String(value ?? ""),
+                    "Sentiment",
+                  ]}
                 />
                 <ReferenceLine y={0} stroke="#cfc4c0" strokeDasharray="3 3" />
                 <Line
