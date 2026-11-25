@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Code, InfoPage, InfoSection, SeedList } from "@/components/shared/info-page";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/how-to" },
   title: "Get your Grok export",
   description: "Where to request your Grok data from xAI and which file to load into the app.",
 };

@@ -3,6 +3,7 @@ import { Code, InfoPage, InfoSection, SeedList } from "@/components/shared/info-
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy-info" },
   title: "Check it yourself",
   description: "How to confirm in your own browser that your Grok export never leaves your device.",
 };

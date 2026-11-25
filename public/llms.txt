@@ -1,0 +1,20 @@
+# what does grok know?
+
+> Free, open-source web app that turns a Grok (xAI) chat export into a 3D map of your conversations, with a timeline, topic clusters, writing statistics and facts you mentioned about yourself. Parsing and analysis run entirely in the browser (Web Workers, IndexedDB). The export is never uploaded; the Content Security Policy only allows requests to the site's own origin.
+
+- Made by shiftbloom studio (https://shiftbloom.studio). Not affiliated with xAI or X.
+- No account, no cookies, no tracking. "Delete data" in the app wipes everything stored locally.
+- Topics come from TF-IDF clustering and sentiment from word lists. No AI model or API reads the chats.
+- Works in current Chrome, Edge, Firefox and Safari. The 3D view needs WebGL. Exports up to 200 MB.
+
+## How to use it
+
+- [Get your Grok export](https://what-does-grok-know.shiftbloom.studio/how-to): request your data at accounts.x.ai (or via the X archive), unzip it, load the conversations JSON on the start page.
+- [FAQ](https://what-does-grok-know.shiftbloom.studio/faq)
+- [Verify that nothing is uploaded](https://what-does-grok-know.shiftbloom.studio/privacy-info)
+
+## Legal and source
+
+- [Privacy policy](https://what-does-grok-know.shiftbloom.studio/privacy) ([Deutsch](https://what-does-grok-know.shiftbloom.studio/datenschutz))
+- [Imprint](https://what-does-grok-know.shiftbloom.studio/imprint) ([Deutsch](https://what-does-grok-know.shiftbloom.studio/impressum))
+- [Source code on GitHub](https://github.com/shiftbloom-studio/what-does-grok-know), AGPL-3.0-or-later

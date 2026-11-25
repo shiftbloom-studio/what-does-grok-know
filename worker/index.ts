@@ -91,7 +91,7 @@ export default {
           await env.ASSETS.fetch(new Request(new URL("/404", url), request)),
         );
       return withSecurityHeaders(
-        new Response(method === "HEAD" ? null : legalPage(kind, legal), {
+        new Response(method === "HEAD" ? null : legalPage(kind, legal, url.origin), {
           headers: {
             "Content-Type": "text/html; charset=utf-8",
             "Cache-Control": "public, max-age=3600",

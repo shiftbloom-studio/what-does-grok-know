@@ -52,7 +52,7 @@ export function esc(s: string): string {
   return s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 }
 
-export function legalPage(kind: LegalKind, l: Legal): string {
+export function legalPage(kind: LegalKind, l: Legal, origin = ""): string {
   const de = kind === "datenschutz" || kind === "impressum";
   const lang = de ? "de" : "en";
   const isPrivacy = kind === "privacy" || kind === "datenschutz";
@@ -81,8 +81,11 @@ export function legalPage(kind: LegalKind, l: Legal): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
+<link rel="canonical" href="${origin}/${kind}">
+<link rel="alternate" hreflang="${lang}" href="${origin}/${kind}">
+<link rel="alternate" hreflang="${de ? "en" : "de"}" href="${origin}${other}">
 <title>${title} · what does grok know?</title>
+<meta name="description" content="${isPrivacy ? (de ? "Welche Daten bei what does grok know? verarbeitet werden: dein Grok-Export bleibt in deinem Browser." : "What data what does grok know? processes: your Grok export stays in your browser.") : de ? "Impressum von what does grok know?, einem Projekt von shiftbloom studio." : "Legal notice for what does grok know?, a shiftbloom studio project."}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/fonts/brand.css">
 <style>

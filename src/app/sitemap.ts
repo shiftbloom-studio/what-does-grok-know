@@ -9,6 +9,11 @@ const pages: Array<[string, number]> = [
   ["/how-to", 0.7],
   ["/faq", 0.6],
   ["/privacy-info", 0.5],
+  // Rendered by the Worker (worker/legal.ts), not by Next.js.
+  ["/privacy", 0.3],
+  ["/datenschutz", 0.3],
+  ["/imprint", 0.3],
+  ["/impressum", 0.3],
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

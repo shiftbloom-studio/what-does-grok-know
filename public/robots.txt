@@ -1,11 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /brain
-Disallow: /timeline
-Disallow: /topics
-Disallow: /insights
-Disallow: /memories
-Disallow: /search
-Disallow: /conversation
 
 Sitemap: https://what-does-grok-know.shiftbloom.studio/sitemap.xml

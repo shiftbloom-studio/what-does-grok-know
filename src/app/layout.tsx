@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.creator, url: siteConfig.creatorUrl }],
   creator: siteConfig.creator,
   metadataBase: new URL(siteConfig.url),
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -73,22 +74,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "WebApplication",
-              name: siteConfig.name,
-              description: siteConfig.description,
-              url: siteConfig.url,
-              applicationCategory: "UtilityApplication",
-              operatingSystem: "Any",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "USD",
-              },
-              author: {
-                "@type": "Organization",
-                name: siteConfig.creator,
-                url: siteConfig.creatorUrl,
-              },
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://shiftbloom.studio/#org",
+                  name: siteConfig.creator,
+                  url: siteConfig.creatorUrl,
+                  sameAs: ["https://github.com/shiftbloom-studio"],
+                },
+                {
+                  "@type": "WebApplication",
+                  "@id": `${siteConfig.url}/#app`,
+                  name: siteConfig.name,
+                  description: siteConfig.description,
+                  url: siteConfig.url,
+                  applicationCategory: "UtilityApplication",
+                  operatingSystem: "Any",
+                  browserRequirements: "Requires WebGL, Web Workers and IndexedDB",
+                  isAccessibleForFree: true,
+                  license: "https://www.gnu.org/licenses/agpl-3.0.html",
+                  sameAs: [siteConfig.github],
+                  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+                  publisher: { "@id": "https://shiftbloom.studio/#org" },
+                  author: { "@id": "https://shiftbloom.studio/#org" },
+                },
+              ],
             }),
           }}
         />
