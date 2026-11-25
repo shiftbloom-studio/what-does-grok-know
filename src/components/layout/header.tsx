@@ -21,7 +21,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-30 border-b border-brand-border bg-white">
+    <header className="sticky top-0 z-30 border-b border-brand-border bg-brand-bg">
       <div className="flex h-14 items-center justify-between gap-3 px-4">
         <Link href="/" className="md:hidden" aria-label="what does grok know, start page">
           <Lockup />

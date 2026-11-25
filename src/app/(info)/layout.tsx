@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/footer";
 export default function InfoLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative flex min-h-screen flex-col">
-      <header className="border-b border-brand-border bg-white">
+      <header className="border-b border-brand-border bg-brand-bg">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4">
           <Link href="/" aria-label="what does grok know, start page">
             <Lockup />
