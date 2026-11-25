@@ -5,7 +5,7 @@ import "./globals.css";
 import { siteConfig } from "@/config/site";
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#F6F1EE",
   width: "device-width",
   initialScale: 1,
 };

@@ -91,9 +91,9 @@ export function legalPage(kind: LegalKind, l: Legal, origin = ""): string {
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/fonts/brand.css">
 <style>
-:root{--ink:#1a1216;--ink60:#6b5f65;--red:#ff2e52;--root:#c81040;--line:#ece3df;--panel:#faf6f4}
+:root{--ink:#1a1216;--ink60:#6b5f65;--red:#ff2e52;--root:#c81040;--line:#ece3df;--panel:#EEE6E2}
 *{box-sizing:border-box}
-body{margin:0;background:#fff;color:var(--ink);font:16px/1.65 "General Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{margin:0;background:#F6F1EE;color:var(--ink);font:16px/1.65 "General Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--root);text-underline-offset:3px}
 .wrap{max-width:46rem;margin:0 auto;padding:0 20px}
 header{border-bottom:1px solid var(--line)}
