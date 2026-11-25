@@ -7,7 +7,7 @@ export interface Env {
 }
 
 const YEAR = "public, max-age=31536000, immutable";
-const FONT_FAMILIES = ["clash-display@500,600", "general-sans@400,500,600"];
+const FONT_FAMILIES = ["clash-display@400,500,600", "general-sans@400,500,600"];
 
 // connect-src 'self' is what backs the privacy promise: the page cannot send data anywhere else.
 const CSP = [

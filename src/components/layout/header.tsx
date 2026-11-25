@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Wordmark } from "@/components/brand/wordmark";
+import { Lockup } from "@/components/brand/wordmark";
 import { Button } from "@/components/ui/button";
 import { clearDatabase } from "@/lib/storage/db-queries";
 
@@ -23,8 +23,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-brand-border bg-white">
       <div className="flex h-14 items-center justify-between gap-3 px-4">
-        <Link href="/" className="text-lg md:hidden">
-          <Wordmark />
+        <Link href="/" className="md:hidden" aria-label="what does grok know, start page">
+          <Lockup />
         </Link>
 
         <div className="hidden md:block" />
