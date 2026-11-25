@@ -32,9 +32,11 @@ export function Footer() {
               rel="noopener noreferrer"
               className="hover:text-brand-primary transition-colors"
             >
-              shiftbloom studio
-            </a>
-            . All rights reserved.
+              <span className="font-semibold text-brand-text">shiftbloom</span>{" "}
+              <span className="text-brand-text/60">studio</span>
+              <span className="text-[#FF2E52]">.</span>
+            </a>{" "}
+            All rights reserved.
           </p>
           <p className="mt-1">100% client-side &mdash; your data never leaves your browser.</p>
         </div>

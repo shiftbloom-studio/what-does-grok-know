@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils/format-utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Bloom } from "@/components/shared/bloom";
 
 interface NavItem {
   href: string;
@@ -25,8 +26,8 @@ export function Sidebar() {
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-64 glass-brand border-r border-brand-primary/15 hidden md:flex flex-col z-40">
       <div className="p-4">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl">{"\u{1F9E0}"}</span>
+        <Link href="/" className="flex items-center gap-3">
+          <Bloom size={30} />
           <span className="font-bold text-brand-text gradient-text text-lg">GrokBrain</span>
         </Link>
       </div>
