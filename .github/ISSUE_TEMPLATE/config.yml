@@ -3,3 +3,6 @@ contact_links:
   - name: Security vulnerability
     url: https://github.com/shiftbloom-studio/what-does-grok-know/security/advisories/new
     about: Please report security issues privately.
+  - name: How to contribute
+    url: https://github.com/shiftbloom-studio/what-does-grok-know/blob/main/CONTRIBUTING.md
+    about: Read this before you pick up an issue. Comment first, get assigned, then open a pull request.
