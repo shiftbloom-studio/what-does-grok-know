@@ -4,7 +4,7 @@
 
 Please **do not open a public issue** for security problems.
 
-Use GitHub's private vulnerability reporting (Security tab, "Report a vulnerability") or email **hello@shiftbloom.studio** with "what does grok know security" in the subject. Include steps to reproduce and the impact you see.
+Use GitHub's private vulnerability reporting (Security tab, "Report a vulnerability") or email **safety@shiftbloom.studio** with "what does grok know security" in the subject. Include steps to reproduce and the impact you see.
 
 We aim to acknowledge reports within 3 working days and to ship a fix or mitigation within 14 days for confirmed issues. We'll credit you in the release notes unless you'd rather stay anonymous.
 
