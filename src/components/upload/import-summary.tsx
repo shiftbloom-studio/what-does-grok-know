@@ -87,7 +87,7 @@ export function ImportSummary({ stats, className }: ImportSummaryProps) {
 
       {stats.dateRange && (
         <p className="text-center text-sm text-brand-muted">
-          {stats.dateRange.start} &mdash; {stats.dateRange.end}
+          {stats.dateRange.start} - {stats.dateRange.end}
         </p>
       )}
 
