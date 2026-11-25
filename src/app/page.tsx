@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Wordmark } from "@/components/brand/wordmark";
+import { Lockup, Wordmark } from "@/components/brand/wordmark";
 import { Footer } from "@/components/layout/footer";
 import { BrainPreview } from "@/components/shared/brain-preview";
 import { Button } from "@/components/ui/button";
@@ -113,7 +113,9 @@ export default function LandingPage() {
   return (
     <div className="relative flex min-h-screen flex-col">
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5">
-        <span className="label">a shiftbloom studio side project</span>
+        <a href="https://shiftbloom.studio" aria-label="shiftbloom studio">
+          <Lockup studio />
+        </a>
         <Link href="/how-to" className="text-sm text-brand-muted hover:text-brand-text">
           How to get your export
         </Link>

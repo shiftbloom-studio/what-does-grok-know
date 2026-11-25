@@ -3,6 +3,8 @@
  * Operator details come from the LEGAL secret at runtime; nothing personal lives in this repository.
  */
 
+import { bloomSvg } from "./bloom";
+
 export type Legal = {
   name: string;
   business?: string;
@@ -96,7 +98,7 @@ a{color:var(--root);text-underline-offset:3px}
 .wrap{max-width:46rem;margin:0 auto;padding:0 20px}
 header{border-bottom:1px solid var(--line)}
 header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:16px;padding-bottom:16px}
-.brand{font:600 18px/1 "Clash Display","General Sans",ui-sans-serif,sans-serif;color:var(--ink);text-decoration:none}
+.brand{display:inline-flex;align-items:center;gap:12px;font:600 20px/1 "Clash Display","General Sans",ui-sans-serif,sans-serif;letter-spacing:-.02em;color:var(--ink);text-decoration:none}.brand b{font-weight:600}@media(min-width:640px){.brand{font-size:22.4px}}
 .brand span{color:var(--red)}
 .back{color:var(--ink60);font-size:14px;text-decoration:none}
 main.wrap{padding-top:48px;padding-bottom:64px}
@@ -110,7 +112,7 @@ footer a{color:var(--ink60);margin-right:16px}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="/">what does grok know<span>?</span></a><a class="back" href="/">${de ? "Zur App" : "Back to the app"}</a></div></header>
+<header><div class="wrap"><a class="brand" href="/">${bloomSvg({ size: 30 })}<b>what does grok know<span>?</span></b></a><a class="back" href="/">${de ? "Zur App" : "Back to the app"}</a></div></header>
 <main class="wrap">
 <p class="label">${de ? "rechtliches" : "legal"}</p>
 <h1>${title}</h1>

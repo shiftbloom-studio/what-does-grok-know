@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Wordmark } from "@/components/brand/wordmark";
+import { Lockup } from "@/components/brand/wordmark";
 import { Footer } from "@/components/layout/footer";
 
 export default function InfoLayout({ children }: { children: React.ReactNode }) {
@@ -7,8 +7,8 @@ export default function InfoLayout({ children }: { children: React.ReactNode }) 
     <div className="relative flex min-h-screen flex-col">
       <header className="border-b border-brand-border bg-white">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4">
-          <Link href="/" className="text-lg">
-            <Wordmark />
+          <Link href="/" aria-label="what does grok know, start page">
+            <Lockup />
           </Link>
           <Link href="/" className="text-sm text-brand-muted hover:text-brand-text">
             Back to the app
