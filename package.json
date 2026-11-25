@@ -34,7 +34,7 @@
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/react": "^16.3.3",
-    "@types/node": "^22.20.7",
+    "@types/node": "^26.6.10",
     "@types/react": "^19.3.3",
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.187.0",
@@ -52,6 +52,6 @@
     "url": "https://github.com/shiftbloom-studio/what-does-grok-know"
   },
   "engines": {
-    "node": ">=20.9"
+    "node": ">=22"
   }
 }

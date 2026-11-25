@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { StudioWordmark, Wordmark } from "@/components/brand/wordmark";
+import { Bloom } from "@/components/shared/bloom";
 import { cn } from "@/lib/utils/format-utils";
 import { navItems } from "./nav-items";
 
@@ -12,7 +13,8 @@ export function Sidebar() {
   return (
     <aside className="fixed bottom-0 left-0 top-0 z-40 hidden w-64 flex-col border-r border-brand-border bg-brand-panel md:flex">
       <div className="px-5 pb-6 pt-5">
-        <Link href="/" className="text-xl leading-tight">
+        <Link href="/" className="flex items-center gap-3 text-lg leading-tight">
+          <Bloom size={30} />
           <Wordmark />
         </Link>
       </div>

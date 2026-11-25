@@ -42,7 +42,7 @@ Next.js 16 (static export), React 19, Tailwind CSS 4, Three.js with react-three-
 
 ## Development
 
-Requires Node.js 20.9 or newer.
+Requires Node.js 22 or newer (CI and Cloudflare builds use Node 26, see `.node-version`).
 
 ```sh
 npm install

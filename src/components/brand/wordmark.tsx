@@ -19,31 +19,3 @@ export function StudioWordmark({ className }: { className?: string }) {
     </span>
   );
 }
-
-/** Small solid bloom for sizes under 32px, per the brandbook. */
-export function BloomSolid({ size = 20, className }: { size?: number; className?: string }) {
-  const petals = Array.from({ length: 8 }, (_, i) => i * 45);
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="-16 -16 32 32"
-      className={className}
-      aria-hidden="true"
-      focusable="false"
-    >
-      {petals.map((deg) => (
-        <ellipse
-          key={deg}
-          cx="0"
-          cy="-8"
-          rx="4.2"
-          ry="7.5"
-          fill="#FF2E52"
-          transform={`rotate(${deg})`}
-        />
-      ))}
-      <circle r="3.2" fill="#FFFFFF" />
-    </svg>
-  );
-}

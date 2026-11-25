@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { StudioWordmark } from "@/components/brand/wordmark";
+import { Bloom } from "@/components/shared/bloom";
 import { siteConfig } from "@/config/site";
 
 const appLinks = [
@@ -21,7 +22,13 @@ export function Footer() {
     <footer className="mt-auto w-full border-t border-brand-border">
       <div className="mx-auto flex max-w-5xl flex-col gap-6 px-5 py-8 text-sm md:flex-row md:items-start md:justify-between">
         <div className="space-y-2">
-          <a href={siteConfig.creatorUrl} target="_blank" rel="noopener noreferrer">
+          <a
+            href={siteConfig.creatorUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2"
+          >
+            <Bloom size={22} solid />
             <StudioWordmark className="text-base" />
           </a>
           <p className="max-w-xs text-brand-muted">
