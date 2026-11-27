@@ -24,27 +24,27 @@
     "next": "^16.4.6",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "recharts": "^3.11.0",
+    "recharts": "^3.11.2",
     "three": "^0.187.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.9",
-    "@cloudflare/workers-types": "^5.20261125.1",
+    "@cloudflare/workers-types": "^5.20261127.1",
     "@tailwindcss/postcss": "^4.3.5",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/react": "^16.3.3",
-    "@types/node": "^26.6.10",
+    "@types/node": "^26.6.11",
     "@types/react": "^19.3.3",
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.187.0",
     "@vitejs/plugin-react": "^6.3.0",
     "jsdom": "^31.0.1",
-    "postcss": "^8.5.33",
+    "postcss": "^8.5.34",
     "tailwindcss": "^4.3.5",
     "typescript": "^7.0.2",
     "vitest": "^5.1.2",
-    "wrangler": "^4.168.0"
+    "wrangler": "^4.169.0"
   },
   "license": "AGPL-3.0-or-later",
   "repository": {
@@ -52,6 +52,6 @@
     "url": "https://github.com/shiftbloom-studio/what-does-grok-know"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=26"
   }
 }
