@@ -125,7 +125,7 @@ export function AnalysisProvider({ children }: { children: ReactNode }) {
       }
     }
 
-    init();
+    void init();
 
     return () => {
       if (workerRef.current) {

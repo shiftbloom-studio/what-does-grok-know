@@ -9,7 +9,9 @@ export function DemoBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    isDemoData().then(setVisible);
+    isDemoData()
+      .then(setVisible)
+      .catch(() => setVisible(false));
   }, []);
 
   const handleImport = useCallback(async () => {

@@ -15,7 +15,9 @@ export default function TopicsPage() {
   const [activeClusterId, setActiveClusterId] = useState<string | null>(null);
 
   useEffect(() => {
-    getAllConversations().then(setConversations);
+    getAllConversations()
+      .then(setConversations)
+      .catch((err) => console.error("Failed to load conversations:", err));
   }, []);
 
   const handleClusterClick = (cluster: TopicCluster) => {

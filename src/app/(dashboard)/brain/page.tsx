@@ -29,10 +29,16 @@ export default function BrainPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAllConversations().then((convs) => {
-      setConversations(convs);
-      setLoading(false);
-    });
+    getAllConversations()
+      .then((convs) => {
+        setConversations(convs);
+      })
+      .catch((err) => {
+        console.error("Failed to load conversations:", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   const graph: BrainGraph = useMemo(() => {

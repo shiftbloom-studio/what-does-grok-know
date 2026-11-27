@@ -29,12 +29,17 @@ export default function InsightsPage() {
 
   useEffect(() => {
     let cancelled = false;
-    getAllConversations().then((convData) => {
-      if (!cancelled) {
-        setConversations(convData);
-        setLoading(false);
-      }
-    });
+    getAllConversations()
+      .then((convData) => {
+        if (!cancelled) {
+          setConversations(convData);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load conversations:", err);
+        if (!cancelled) setLoading(false);
+      });
     return () => {
       cancelled = true;
     };

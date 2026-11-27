@@ -13,12 +13,17 @@ export default function TimelinePage() {
 
   useEffect(() => {
     let cancelled = false;
-    getAllConversations().then((data) => {
-      if (!cancelled) {
-        setConversations(data);
-        setLoading(false);
-      }
-    });
+    getAllConversations()
+      .then((data) => {
+        if (!cancelled) {
+          setConversations(data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load conversations:", err);
+        if (!cancelled) setLoading(false);
+      });
     return () => {
       cancelled = true;
     };
