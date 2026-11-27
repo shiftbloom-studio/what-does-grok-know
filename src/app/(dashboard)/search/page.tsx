@@ -21,13 +21,18 @@ export default function SearchPage() {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([getAllConversations(), getAllMessages()]).then(([convData, msgData]) => {
-      if (!cancelled) {
-        setConversations(convData);
-        setMessages(msgData);
-        setLoading(false);
-      }
-    });
+    Promise.all([getAllConversations(), getAllMessages()])
+      .then(([convData, msgData]) => {
+        if (!cancelled) {
+          setConversations(convData);
+          setMessages(msgData);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load conversations:", err);
+        if (!cancelled) setLoading(false);
+      });
     return () => {
       cancelled = true;
     };

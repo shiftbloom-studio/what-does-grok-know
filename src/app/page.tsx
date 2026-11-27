@@ -36,9 +36,11 @@ export default function LandingPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    hasData().then((exists) => {
-      if (exists) router.replace("/brain");
-    });
+    hasData()
+      .then((exists) => {
+        if (exists) router.replace("/brain");
+      })
+      .catch((err) => console.error("Failed to check for stored data:", err));
   }, [router]);
 
   const handleFileLoaded = useCallback((text: string) => {

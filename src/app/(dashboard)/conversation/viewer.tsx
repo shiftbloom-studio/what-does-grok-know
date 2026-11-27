@@ -24,13 +24,18 @@ export function ConversationDetail() {
   useEffect(() => {
     if (!id) return;
     let cancelled = false;
-    Promise.all([getConversation(id), getMessages(id)]).then(([convData, msgData]) => {
-      if (!cancelled) {
-        setConversation(convData ?? null);
-        setMessages(msgData);
-        setLoading(false);
-      }
-    });
+    Promise.all([getConversation(id), getMessages(id)])
+      .then(([convData, msgData]) => {
+        if (!cancelled) {
+          setConversation(convData ?? null);
+          setMessages(msgData);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to load conversation:", err);
+        if (!cancelled) setLoading(false);
+      });
     return () => {
       cancelled = true;
     };
