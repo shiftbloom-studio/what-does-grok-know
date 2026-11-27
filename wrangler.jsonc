@@ -16,7 +16,13 @@
     "run_worker_first": ["/fonts/*", "/privacy", "/datenschutz", "/imprint", "/impressum"]
   },
   // No routes on purpose: attach your own custom domain once (dashboard or API). Deploys keep it.
-  "observability": { "enabled": false },
+  // No request logs (see the privacy page), but real-time Issues stay on so failures raise an alert.
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": false },
+    "traces": { "enabled": false },
+    "issues": { "enabled": true }
+  },
   // Operator details for the legal pages are a secret, so redeploys never overwrite or expose them:
   //   wrangler secret put LEGAL   (JSON, see README)
 }
